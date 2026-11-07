@@ -24,7 +24,7 @@
 <header class="top">
   <div class="wrap top-in">
     <a class="logo" href="/"><img src="/favicon.svg" alt="" width="32" height="32"><span>Дрова Ніко</span></a>
-    <nav class="nav"><a href="#prices">Каталог</a><a href="#calc">Калькулятор</a><a href="#delivery">Доставка</a><a href="#faq">Питання</a></nav>
+    <nav class="nav"><a href="#prices">Каталог</a><a href="#delivery">Доставка</a><a href="#faq">Питання</a></nav>
     <div class="top-actions">
         <a class="phone" href="tel:+380503947571">+38 (050) 394-75-71</a>
       <a class="btn btn-sm" href="tel:+380503947571">Подзвонити</a>
@@ -40,7 +40,7 @@
         <h1>Дрова та паливо<br>у Миколаєві з доставкою <span>сьогодні</span></h1>
         <p class="lead">Колоті, пиляні та метрові дрова, паливні брикети, пелети, вугілля ДГ і пісок. Чесний обʼєм, безкоштовна доставка дров, оплата після розвантаження.</p>
         <div class="cta-row">
-          <a class="btn btn-lg" href="#calc">Розрахувати вартість</a>
+          <a class="btn btn-lg" href="#prices">Дивитися ціни</a>
           <a class="btn btn-lg btn-light" href="#order">Замовити дзвінок</a>
         </div>
         <ul class="points"><li>Доставка за 2–4 години</li><li>Оплата по факту</li><li>Вологість до 25%</li></ul>
@@ -137,28 +137,6 @@
     </div>
   </section>
 
-  <section id="calc" class="sec sec-dark">
-    <div class="wrap calc-in">
-      <div>
-        <h2>Калькулятор вартості дров</h2>
-        <p class="sub">Порахуйте ціну за 10 секунд — і отримайте знижку 5% при замовленні через сайт.</p>
-        <form class="calc" id="calcForm" onsubmit="return false">
-          <label>Вид дров<select id="cWood"><option value="split">Колоті дрова — від 3 500 грн</option><option value="sawn">Пиляні дрова — від 3 500 грн</option><option value="meter">Метрові дрова — від 3 500 грн</option></select></label>
-          <label>Обʼєм, складометрів: <output id="cVolOut">4</output>
-            <input id="cVol" type="range" min="1" max="20" step="1" value="4"></label>
-          <label>Довжина поліна<select id="cLen"><option value="0">30–40 см (стандарт)</option><option value="100">до 25 см (для каміна, +100 грн/м³)</option><option value="0">50 см (+0 грн)</option></select></label>
-        </form>
-      </div>
-      <div class="calc-res card">
-        <div class="row"><span id="rWood"></span><b id="rBase"></b></div>
-        <div class="row"><span>Доставка</span><b id="rDel"></b></div>
-        <div class="row disc"><span>Знижка за сайт −5%</span><b id="rDisc"></b></div>
-        <div class="total"><span>Разом з доставкою</span><b id="rTotal"></b></div>
-        <a class="btn btn-lg btn-block" href="#order" id="calcGo">Оформити за цією ціною</a>
-      </div>
-    </div>
-  </section>
-
   <section class="sec">
     <div class="wrap">
       <h2>Чому замовляють у нас</h2>
@@ -244,7 +222,7 @@
   <a class="btn" href="#order">Замовити</a>
 </div>
 
-<script>window.SITE={"lang":"uk","products":[{"id":"split","name":"Колоті дрова","price":3500,"noLength":false},{"id":"sawn","name":"Пиляні дрова","price":3500,"noLength":false},{"id":"meter","name":"Метрові дрова","price":3500,"noLength":true}],"items":{"split":{"name":"Колоті дрова","unit":"скл.м³","calc":true},"sawn":{"name":"Пиляні дрова","unit":"скл.м³","calc":true},"meter":{"name":"Метрові дрова","unit":"скл.м³","calc":true},"br-wood":{"name":"Деревні брикети","unit":"т","calc":false},"br-peat":{"name":"Торфʼяні брикети","unit":"т","calc":false},"br-husk":{"name":"Брикети з лушпиння","unit":"т","calc":false},"pel-agro":{"name":"Агропелети","unit":"т","calc":false},"pel-sun":{"name":"Соняшникові пелети","unit":"т","calc":false},"coal-dg-bulk":{"name":"Вугілля ДГ навалом","unit":"т","calc":false},"coal-dg-bags":{"name":"Вугілля ДГ у мішках","unit":"т","calc":false},"sand-river":{"name":"Річковий митий пісок","unit":"т","calc":false},"sand-quarry":{"name":"Карʼєрний жовтий пісок","unit":"т","calc":false}},"freeFrom":4,"fee":400,"ok":"Дякуємо! Заявку прийнято — передзвонимо протягом 5 хвилин.","err":"Не вдалося надіслати. Подзвоніть нам, будь ласка:","phone":"+38 (050) 394-75-71","tel":"+380503947571","free":"безкоштовно"};</script>
+<script>window.SITE={"lang":"uk","products":[{"id":"split","name":"Колоті дрова","price":3500,"noLength":false},{"id":"sawn","name":"Пиляні дрова","price":3500,"noLength":false},{"id":"meter","name":"Метрові дрова","price":3500,"noLength":true}],"items":{"split":{"name":"Колоті дрова","unit":"скл.м³","calc":true},"sawn":{"name":"Пиляні дрова","unit":"скл.м³","calc":true},"meter":{"name":"Метрові дрова","unit":"скл.м³","calc":true},"br-wood":{"name":"Деревні брикети","unit":"т","calc":false},"br-peat":{"name":"Торфʼяні брикети","unit":"т","calc":false},"br-husk":{"name":"Брикети з лушпиння","unit":"т","calc":false},"pel-agro":{"name":"Агропелети","unit":"т","calc":false},"pel-sun":{"name":"Соняшникові пелети","unit":"т","calc":false},"coal-dg-bulk":{"name":"Вугілля ДГ навалом","unit":"т","calc":false},"coal-dg-bags":{"name":"Вугілля ДГ у мішках","unit":"т","calc":false},"sand-river":{"name":"Річковий митий пісок","unit":"т","calc":false},"sand-quarry":{"name":"Карʼєрний жовтий пісок","unit":"т","calc":false}},"freeFrom":4,"fee":400,"ok":"Дякуємо! Заявку прийнято — передзвонимо протягом 5 хвилин.","err":"Не вдалося надіслати. Подзвоніть нам, будь ласка:","phone":"+38 (050) 394-75-71","tel":"+380503947571"};</script>
 <script src="/app.js" defer></script>
 </body>
 </html>

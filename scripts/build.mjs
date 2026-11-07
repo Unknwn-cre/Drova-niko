@@ -9,19 +9,16 @@ const T = {
     lang: "uk", path: "/",
     title: "Дрова Миколаїв — купити дрова, брикети, пелети, вугілля з доставкою",
     desc: `Дрова в Миколаєві: колоті, пиляні, метрові. Паливні брикети, пелети, вугілля ДГ, пісок. Доставка в день замовлення, оплата після розвантаження. ☎ ${site.phoneHuman}`,
-    nav: ["Каталог", "Калькулятор", "Доставка", "Питання"],
+    nav: ["Каталог", "Доставка", "Питання"],
     call: "Подзвонити",
     heroBadge: "На ринку з 1997 року · дрова в наявності",
     heroH1: "Дрова та паливо<br>у Миколаєві з доставкою <span>сьогодні</span>",
     heroSub: `Колоті, пиляні та метрові дрова, паливні брикети, пелети, вугілля ДГ і пісок. Чесний обʼєм, безкоштовна доставка дров, оплата після розвантаження.`,
-    heroCta: "Розрахувати вартість", heroCta2: "Замовити дзвінок",
+    heroCta: "Дивитися ціни", heroCta2: "Замовити дзвінок",
     heroPoints: ["Доставка за 2–4 години", "Оплата по факту", "Вологість до 25%"],
     trust: [["з 1997", "року на ринку Миколаєва"], ["2–4 години", "доставка по місту"], ["0 грн", "передоплата"]],
     pricesH: "Каталог і ціни", pricesSub: "Дрова, брикети, пелети, вугілля та пісок з доставкою по Миколаєву та області. Ціни вказані «від» — точну суму назвемо за телефоном, вона залежить від обʼєму та фасування. Ціну на пісок уточнюйте за телефоном.", ask: "ціна за телефоном",
     from: "від", unit: "грн/скл.м³", heat: "Тепловіддача", order: "Замовити",
-    calcH: "Калькулятор вартості дров", calcSub: "Порахуйте ціну за 10 секунд — і отримайте знижку 5% при замовленні через сайт.",
-    calcWood: "Вид дров", calcVol: "Обʼєм, складометрів", calcLen: "Довжина поліна", calcLenOpts: ["30–40 см (стандарт)", "до 25 см (для каміна, +100 грн/м³)", "50 см (+0 грн)"], calcMeter: "Метрові — поліно 1 м",
-    calcTotal: "Разом з доставкою", calcDelivery: "Доставка", calcFree: "безкоштовно", calcDisc: "Знижка за сайт −5%", calcBtn: "Оформити за цією ціною",
     whyH: "Чому замовляють у нас", why: [
       ["🏆", "З 1997 року", "Майже 30 років постачаємо дрова та паливо миколаївцям. Знаємо, що потрібно вашому котлу."],
       ["📏", "Чесний складометр", "Укладаємо дрова рівно в кузові та міряємо рулеткою при вас. Не сподобалось — не платите."],
@@ -67,7 +64,7 @@ function page(L) {
   const t = T[L];
   const name = (p) => p[L];
   const unit = (i) => (L === "uk" ? i.unitUk : i.unitRu);
-  const ids = ["prices", "calc", "delivery", "faq"];
+  const ids = ["prices", "delivery", "faq"];
   const canonical = site.domain + t.path;
   const hours = L === "uk" ? site.hours : site.hoursRu;
   const minPrice = Math.min(...products.map((p) => p.price));
@@ -150,7 +147,7 @@ function page(L) {
         <h1>${t.heroH1}</h1>
         <p class="lead">${t.heroSub}</p>
         <div class="cta-row">
-          <a class="btn btn-lg" href="#calc">${t.heroCta}</a>
+          <a class="btn btn-lg" href="#prices">${t.heroCta}</a>
           <a class="btn btn-lg btn-light" href="#order">${t.heroCta2}</a>
         </div>
         <ul class="points">${t.heroPoints.map((p) => `<li>${p}</li>`).join("")}</ul>
@@ -172,28 +169,6 @@ function page(L) {
       <h2>${t.pricesH}</h2>
       <p class="sub">${t.pricesSub}</p>
       <div class="grid products">${productCards}
-      </div>
-    </div>
-  </section>
-
-  <section id="calc" class="sec sec-dark">
-    <div class="wrap calc-in">
-      <div>
-        <h2>${t.calcH}</h2>
-        <p class="sub">${t.calcSub}</p>
-        <form class="calc" id="calcForm" onsubmit="return false">
-          <label>${t.calcWood}<select id="cWood">${woodOptions}</select></label>
-          <label>${t.calcVol}: <output id="cVolOut">4</output>
-            <input id="cVol" type="range" min="1" max="20" step="1" value="4"></label>
-          <label>${t.calcLen}<select id="cLen">${t.calcLenOpts.map((o, i) => `<option value="${[0, 100, 0][i]}">${o}</option>`).join("")}</select></label>
-        </form>
-      </div>
-      <div class="calc-res card">
-        <div class="row"><span id="rWood"></span><b id="rBase"></b></div>
-        <div class="row"><span>${t.calcDelivery}</span><b id="rDel"></b></div>
-        <div class="row disc"><span>${t.calcDisc}</span><b id="rDisc"></b></div>
-        <div class="total"><span>${t.calcTotal}</span><b id="rTotal"></b></div>
-        <a class="btn btn-lg btn-block" href="#order" id="calcGo">${t.calcBtn}</a>
       </div>
     </div>
   </section>
