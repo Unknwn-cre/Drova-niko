@@ -51,18 +51,18 @@
     fab.hidden = count === 0;
     empty.hidden = count > 0;
     form.hidden = count === 0;
-    let total = 0, unknown = false;
+    let total = 0, unknown = false, approx = false;
     list.innerHTML = ids.map((id) => {
       const it = S.items[id], q = cart[id];
-      if (it.price) total += it.price * q; else unknown = true;
+      if (it.price) { total += it.price * q; if (!it.exact) approx = true; } else unknown = true;
       return `<div class="cart-row" data-id="${id}">
         <div><small class="item-cat">${it.cat}</small><b>${it.name}</b>
-          <span class="muted">${it.price ? `від ${fmt(it.price * q)} грн` : "ціна за телефоном"}</span></div>
+          <span class="muted">${it.price ? `${it.exact ? "" : "від "}${fmt(it.price * q)} грн` : "ціна за телефоном"}</span></div>
         <div class="qty"><button type="button" data-dec aria-label="Менше">−</button><input type="number" min="1" max="999" value="${q}" inputmode="numeric" aria-label="Кількість"><span class="qty-u">${it.unit}</span><button type="button" data-inc aria-label="Більше">+</button></div>
         <button type="button" class="rm" data-rm aria-label="Видалити">×</button>
       </div>`;
     }).join("");
-    $("#cartTotal").textContent = total ? `від ${fmt(total)} грн${unknown ? " + позиції за телефоном" : ""}` : "ціну назвемо за телефоном";
+    $("#cartTotal").textContent = total ? `${approx ? "від " : ""}${fmt(total)} грн${unknown ? " + позиції за телефоном" : ""}` : "ціну назвемо за телефоном";
   }
 
   list.addEventListener("change", (e) => {
@@ -110,7 +110,7 @@
     const d = Object.fromEntries(new FormData(form));
     d.type = "cart";
     d.page = location.pathname;
-    d.items = Object.keys(cart).map((id) => ({ name: S.items[id].name, qty: cart[id], unit: S.items[id].unit, price: S.items[id].price }));
+    d.items = Object.keys(cart).map((id) => ({ name: S.items[id].name, qty: cart[id], unit: S.items[id].unit, price: S.items[id].price, exact: S.items[id].exact }));
     try {
       await send(d);
       cart = {}; save(); render();
