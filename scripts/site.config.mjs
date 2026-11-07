@@ -51,11 +51,11 @@ export const catalog = [
   {
     id: "coal", icon: "⚫",
     uk: "Вугілля для опалення", ru: "Уголь для отопления",
-    noteUk: "Вугілля ДГ — навалом або у мішках.",
-    noteRu: "Уголь ДГ — навалом или в мешках.",
+    noteUk: "Вугілля марки ДГ, фракції 13–100 та 50–100 мм. Навалом або у мішках.",
+    noteRu: "Уголь марки ДГ, фракции 13–100 и 50–100 мм. Навалом или в мешках.",
     items: [
-      { id: "coal-dg-bulk", uk: "Вугілля ДГ навалом", ru: "Уголь ДГ навалом", price: 14000, unitUk: "т", unitRu: "т" },
-      { id: "coal-dg-bags", uk: "Вугілля ДГ у мішках", ru: "Уголь ДГ в мешках", price: 14000, unitUk: "т", unitRu: "т" },
+      { id: "coal-dg-13-100", img: "/img/coal-dg-13-100.webp", uk: "Вугілля ДГ 13–100", ru: "Уголь ДГ 13–100", price: 14000, unitUk: "т", unitRu: "т" },
+      { id: "coal-dg-50-100", img: "/img/coal-dg-50-100.webp", uk: "Вугілля ДГ 50–100", ru: "Уголь ДГ 50–100", price: 14500, unitUk: "т", unitRu: "т" },
     ],
   },
   {
@@ -64,8 +64,22 @@ export const catalog = [
     noteUk: "Для будівництва, стяжки, кладки та благоустрою.",
     noteRu: "Для строительства, стяжки, кладки и благоустройства.",
     items: [
-      { id: "sand-river", uk: "Річковий митий пісок", ru: "Речной мытый песок", price: null, unitUk: "т", unitRu: "т" },
-      { id: "sand-quarry", uk: "Карʼєрний жовтий пісок", ru: "Карьерный жёлтый песок", price: null, unitUk: "т", unitRu: "т" },
+      { id: "sand-river", img: "/img/sand-river.webp", uk: "Річковий митий пісок", ru: "Речной мытый песок", price: 1000, unitUk: "т", unitRu: "т" },
+      { id: "sand-river-sifted", img: "/img/sand-river.webp", uk: "Річковий сіяний пісок", ru: "Речной сеяный песок", price: 750, unitUk: "т", unitRu: "т" },
+      { id: "sand-quarry", img: "/img/sand-quarry.webp", uk: "Карʼєрний жовтий пісок", ru: "Карьерный жёлтый песок", price: 700, unitUk: "т", unitRu: "т" },
+    ],
+  },
+  {
+    id: "gravel", icon: "🪨",
+    uk: "Щебінь і відсів", ru: "Щебень и отсев",
+    noteUk: "Щебінь фракцій 5–10, 5–20, 20–40, 40–70 мм — для бетону, доріжок, підсипки та благоустрою.",
+    noteRu: "Щебень фракций 5–10, 5–20, 20–40, 40–70 мм — для бетона, дорожек, подсыпки и благоустройства.",
+    items: [
+      { id: "gravel-5-10", uk: "Щебінь 5–10", ru: "Щебень 5–10", price: 1300, unitUk: "т", unitRu: "т" },
+      { id: "gravel-5-20", uk: "Щебінь 5–20", ru: "Щебень 5–20", price: 1200, unitUk: "т", unitRu: "т" },
+      { id: "gravel-20-40", uk: "Щебінь 20–40", ru: "Щебень 20–40", price: 1200, unitUk: "т", unitRu: "т" },
+      { id: "gravel-40-70", uk: "Щебінь 40–70", ru: "Щебень 40–70", price: 1200, unitUk: "т", unitRu: "т" },
+      { id: "screenings", uk: "Відсів щебню", ru: "Отсев щебня", price: 1150, unitUk: "т", unitRu: "т" },
     ],
   },
 ];
