@@ -321,3 +321,7 @@ dialog.sheet::backdrop{background:rgba(31,26,20,.55);backdrop-filter:blur(3px)}
 .sec-dark .card{box-shadow:0 20px 50px rgba(0,0,0,.45)}
 .cta-card .btn{background:var(--fire);color:#fff}
 .cta-card .btn:hover{background:var(--fire-d)}
+
+/* hero: real firewood photo instead of drawn logs */
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:24px;box-shadow:0 24px 60px rgba(90,40,10,.25)}
+.hero-art .price-bubble{left:-18px;top:auto;bottom:8%;z-index:1}
