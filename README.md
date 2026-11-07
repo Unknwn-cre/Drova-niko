@@ -1,6 +1,6 @@
 # Дрова Ніко — продающий лендинг (Николаев)
 
-Статический лендинг (UA `/` + RU `/ru/`) на Cloudflare Workers Static Assets + Worker для заявок → Telegram.
+Статический лендинг на украинском (`/`; старый `/ru/` → 301 на главную) на Cloudflare Workers Static Assets + Worker для заявок → Telegram.
 
 ## Что поменять перед запуском
 Всё в `scripts/site.config.mjs`: телефон, Telegram, Viber, домен, каталог и цены (price: null → «ціна за телефоном»), районы. Затем `npm run build`.

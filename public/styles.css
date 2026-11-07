@@ -63,7 +63,7 @@ h1 span{color:var(--fire)}
 
 /* trust */
 .trust{background:var(--dark);color:#fff}
-.trust-in{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:26px 20px}
+.trust-in{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:26px 20px}
 .trust b{display:block;font-size:30px;font-weight:800;color:#ffb27a}
 .trust span{color:#cbbfb0;font-size:14px}
 
@@ -166,8 +166,9 @@ details p{color:var(--muted)}
   .hero-art{display:none}
   .sec{padding:56px 0}
   .products,.why,.reviews,.steps{grid-template-columns:1fr}
-  .trust-in{grid-template-columns:repeat(2,1fr);padding:20px 16px}
-  .trust b{font-size:24px}
+  .trust-in{grid-template-columns:1fr 1fr 1fr;padding:20px 16px;gap:10px}
+  .trust span{font-size:12px}
+  .trust b{font-size:19px}
   .cta-row .btn{flex:1 1 100%}
   .top .btn-sm{display:none}
   .foot-in{grid-template-columns:1fr}

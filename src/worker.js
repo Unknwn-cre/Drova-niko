@@ -42,6 +42,7 @@ function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === "/ru" || url.pathname.startsWith("/ru/")) return Response.redirect(url.origin + "/", 301);
     if (url.pathname === "/api/order") {
       if (request.method !== "POST") return json({ ok: false }, 405);
       return handleOrder(request, env);
