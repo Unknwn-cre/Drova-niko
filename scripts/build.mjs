@@ -109,8 +109,9 @@ function page(L) {
     <label>${t.fMsg}<textarea name="comment" rows="2" maxlength="500"></textarea></label>
     <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <p class="pay-note pay-sm">💳 Оплата при отриманні — нічого платити заздалегідь не потрібно</p>
+    <p class="pay-note pay-sm">📞 Замовлення надходить у роботу після підтвердження по дзвінку</p>
     <button class="btn btn-lg btn-block" type="submit">Відправити заявку</button>
-    <p class="policy">Остаточну ціну та час доставки підтвердимо дзвінком. ${t.fPolicy}</p>
+    <p class="policy">Остаточну ціну та час доставки уточнимо під час дзвінка. ${t.fPolicy}</p>
     <p class="form-msg" id="cartMsg" role="status" hidden></p>
   </form>
 </dialog>
@@ -183,7 +184,6 @@ function page(L) {
   <section id="prices" class="sec">
     <div class="wrap">
       <h2>${t.pricesH}</h2>
-      <p class="pay-note">🛒 Замовляйте на сайті — оплата при отриманні</p>
       <p class="sub">${t.pricesSub}</p>
       <div class="grid cats-grid">${categoryCards}
       </div>${ctaBanner}
@@ -269,7 +269,7 @@ function page(L) {
   <button type="button" class="btn" data-open-cart>🛒 Кошик <b class="cart-n">0</b></button>
 </div>
 
-<script>window.SITE=${JSON.stringify({ items: Object.fromEntries(catalog.flatMap((c) => c.items.map((i) => [i.id, { name: name(i), unit: unit(i), price: i.price || 0, cat: name(c) }]))), ok: t.fOk, err: t.fErr, phone: site.phoneHuman, tel: site.phone })};</script>
+<script>window.SITE=${JSON.stringify({ items: Object.fromEntries(catalog.flatMap((c) => c.items.map((i) => [i.id, { name: name(i), unit: unit(i), price: i.price || 0, cat: name(c) }]))), ok: t.fOk, okCart: "Дякуємо! Заявку прийнято. Замовлення надходить у роботу після підтвердження по дзвінку — ми передзвонимо протягом 5 хвилин.", err: t.fErr, phone: site.phoneHuman, tel: site.phone })};</script>
 ${categoryDialogs}${cartDialog}
 <script src="/app.js" defer></script>
 </body>

@@ -88,9 +88,9 @@
     const r = await fetch("/api/order", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(data) });
     if (!r.ok) throw new Error(r.status);
   }
-  function showMsg(el, ok) {
+  function showMsg(el, ok, okText = S.ok) {
     el.className = "form-msg " + (ok ? "ok" : "err");
-    if (ok) el.textContent = S.ok; else el.innerHTML = `${S.err} <a href="tel:${S.tel}">${S.phone}</a>`;
+    if (ok) el.textContent = okText; else el.innerHTML = `${S.err} <a href="tel:${S.tel}">${S.phone}</a>`;
     el.hidden = false;
   }
 
@@ -115,7 +115,7 @@
       await send(d);
       cart = {}; save(); render();
       form.hidden = false; empty.hidden = true; form.reset();
-      showMsg(msg, true);
+      showMsg(msg, true, S.okCart);
       window.gtag && window.gtag("event", "generate_lead");
     } catch { showMsg(msg, false); }
     finally { btn.disabled = false; }
