@@ -107,6 +107,7 @@
   async function send(data) {
     const r = await fetch("/api/order", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(data) });
     if (!r.ok) throw new Error(r.status);
+    try { (window.dataLayer = window.dataLayer || []).push({ event: "order_sent", order_type: data.type || "form" }); } catch {}
   }
   function showMsg(el, ok, okText = S.ok) {
     el.className = "form-msg " + (ok ? "ok" : "err");
