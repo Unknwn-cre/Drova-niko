@@ -30,20 +30,23 @@
   for (const id of Object.keys(cart)) if (!S.items[id] || !(cart[id] > 0)) delete cart[id];
   const save = () => { try { localStorage.setItem("cart", JSON.stringify(cart)); } catch {} };
 
-  const clampQty = (v) => Math.max(1, Math.min(999, Math.round(+v) || 1));
+  // дробові тонни: 2.3 або 2,3 → 2.3 (крок 0.1, від 0.1 до 999)
+  const num = (v) => parseFloat(String(v).replace(",", "."));
+  const clampQty = (v) => { const n = Math.round(num(v) * 10) / 10; return Math.max(0.1, Math.min(999, n > 0 ? n : 1)); };
+  const showQty = (n) => String(clampQty(n)).replace(".", ",");
 
   // qty steppers (category dialogs and cart rows)
   document.addEventListener("click", (e) => {
     const b = e.target.closest("[data-inc],[data-dec]");
     if (!b) return;
     const inp = b.parentElement.querySelector("input");
-    inp.value = clampQty(+inp.value + (b.hasAttribute("data-inc") ? 1 : -1));
+    inp.value = showQty(clampQty(inp.value) + (b.hasAttribute("data-inc") ? 1 : -1));
     inp.dispatchEvent(new Event("change", { bubbles: true }));
   });
 
   // typing your own amount: select on focus, clamp on blur/Enter
   document.addEventListener("focusin", (e) => { if (e.target.matches(".qty input")) setTimeout(() => e.target.select(), 0); });
-  document.addEventListener("focusout", (e) => { if (e.target.matches(".qty input")) { e.target.value = clampQty(e.target.value); e.target.dispatchEvent(new Event("change", { bubbles: true })); } });
+  document.addEventListener("focusout", (e) => { if (e.target.matches(".qty input")) { e.target.value = showQty(e.target.value); e.target.dispatchEvent(new Event("change", { bubbles: true })); } });
   document.addEventListener("keydown", (e) => { if (e.key === "Enter" && e.target.matches(".qty input")) { e.preventDefault(); e.target.blur(); } });
 
   // add to cart
@@ -75,7 +78,7 @@
       return `<div class="cart-row" data-id="${id}">
         <div><small class="item-cat">${it.cat}</small><b>${it.name}</b>
           <span class="muted">${it.price ? `${it.exact ? "" : "від "}${fmt(it.price * q)} грн` : "ціна за телефоном"}</span></div>
-        <div class="qty"><button type="button" data-dec aria-label="Менше">−</button><input type="number" min="1" max="999" value="${q}" inputmode="numeric" aria-label="Кількість"><span class="qty-u">${it.unit}</span><button type="button" data-inc aria-label="Більше">+</button></div>
+        <div class="qty"><button type="button" data-dec aria-label="Менше">−</button><input type="text" value="${showQty(q)}" inputmode="decimal" autocomplete="off" aria-label="Кількість"><span class="qty-u">${it.unit}</span><button type="button" data-inc aria-label="Більше">+</button></div>
         <button type="button" class="rm" data-rm aria-label="Видалити">×</button>
       </div>`;
     }).join("");

@@ -90,7 +90,7 @@ function page(L) {
       ${thumb(i, c, "pick-img")}
       <div class="pick-info"><h3>${esc(name(i))}</h3><div class="price">${priceOf(i)}</div></div>
       <div class="pick-act">
-        <div class="qty" aria-label="Кількість"><button type="button" data-dec aria-label="Менше">−</button><input type="number" min="1" max="999" value="1" inputmode="numeric" aria-label="Кількість, ${unit(i)}"><span class="qty-u">${unit(i)}</span><button type="button" data-inc aria-label="Більше">+</button></div>
+        <div class="qty" aria-label="Кількість"><button type="button" data-dec aria-label="Менше">−</button><input type="text" value="1" inputmode="decimal" autocomplete="off" aria-label="Кількість, ${unit(i)}"><span class="qty-u">${unit(i)}</span><button type="button" data-inc aria-label="Більше">+</button></div>
         <button type="button" class="btn" data-add="${i.id}">Додати в кошик</button>
       </div>
     </div>`).join("")}
