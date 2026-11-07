@@ -68,7 +68,7 @@ function page(L) {
   const categoryCards = catalog.map((c) => {
     const priced = c.items.filter((i) => i.price);
     const min = priced.length ? Math.min(...priced.map((i) => i.price)) : 0;
-    const cover = c.items.find((i) => i.img) || c.items[0];
+    const cover = c.img ? { ...c, img: c.img } : c.items.find((i) => i.img) || c.items[0];
     return `
         <button type="button" class="card cat-card" data-cat="${c.id}" aria-haspopup="dialog">
           ${thumb(cover, c)}
