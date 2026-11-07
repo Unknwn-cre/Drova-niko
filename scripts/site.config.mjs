@@ -2,7 +2,7 @@
 
 export const site = {
   domain: "https://drova-niko.com.ua", // TODO: заменить на реальный домен
-  brand: "Дрова Ніко",
+  brand: "Склад твердого палива та сипучих матеріалів",
   phone: "+380503947571",
   phoneHuman: "+38 (050) 394-75-71",
   telegram: "+380503947571", // t.me/<username> или t.me/+номер
