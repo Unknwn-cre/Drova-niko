@@ -13,15 +13,24 @@ async function handleOrder(request, env) {
   const phone = clip(d.phone, 20);
   if (phone.replace(/\D/g, "").length < 10) return json({ ok: false, error: "phone" }, 422);
 
+  const items = Array.isArray(d.items) ? d.items.slice(0, 30) : [];
+  const fmt = (n) => Math.round(n).toLocaleString("uk-UA");
+  let total = 0;
+  const itemLines = items.map((i) => {
+    const qty = Math.max(1, Math.min(999, Number(i.qty) || 1));
+    const price = Number(i.price) || 0;
+    total += price * qty;
+    return `• ${esc(clip(i.name, 60))} — ${qty} ${esc(clip(i.unit, 10))}${price ? ` (від ${fmt(price * qty)} грн)` : ""}`;
+  });
   const lines = [
-    "🪵 <b>Нова заявка з сайту</b>",
+    d.type === "callback" ? "📞 <b>Замовлення дзвінка</b>" : "🛒 <b>Нова заявка з сайту</b>",
     `📞 ${esc(phone)}`,
     d.name && `👤 ${esc(clip(d.name, 60))}`,
-    `📦 ${esc(clip(d.itemName || d.item, 60))}${d.volume ? " — " + esc(clip(d.volume, 20)) : ""}`,
-    d.estimate && `💰 ≈ ${esc(clip(d.estimate, 10))} грн (калькулятор)`,
-    d.address && `📍 ${esc(clip(d.address, 120))}`,
+    ...itemLines,
+    total && `💰 Разом: від ${fmt(total)} грн`,
+    !items.length && d.itemName && `📦 ${esc(clip(d.itemName, 60))}${d.volume ? " — " + esc(clip(d.volume, 20)) : ""}`,
+    d.address && `📍 ${esc(clip(d.address, 160))}`,
     d.comment && `💬 ${esc(clip(d.comment, 500))}`,
-    `🌐 ${esc(clip(d.lang, 2))} ${esc(clip(d.page, 20))}`,
   ].filter(Boolean).join("\n");
 
   if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) {

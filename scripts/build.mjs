@@ -2,7 +2,6 @@
 import { writeFileSync, mkdirSync } from "node:fs";
 import { site, catalog, areas, deliveryFreeFrom, deliveryFee } from "./site.config.mjs";
 const products = catalog.flatMap((c) => c.items).filter((i) => i.calc);
-const allItems = catalog.flatMap((c) => c.items);
 
 const T = {
   uk: {
@@ -14,7 +13,7 @@ const T = {
     heroBadge: "На ринку з 1997 року · дрова в наявності",
     heroH1: "Дрова та паливо<br>у Миколаєві з доставкою <span>сьогодні</span>",
     heroSub: `Колоті, пиляні та метрові дрова, паливні брикети, пелети, вугілля ДГ і пісок. Чесний обʼєм, безкоштовна доставка дров, оплата після розвантаження.`,
-    heroCta: "Дивитися ціни", heroCta2: "Замовити дзвінок",
+    heroCta: "Обрати товар", heroCta2: "Замовити дзвінок",
     heroPoints: ["Доставка за 2–4 години", "Оплата по факту", "Вологість до 25%"],
     pricesH: "Каталог і ціни", pricesSub: "Дрова, брикети, пелети, вугілля та пісок з доставкою по Миколаєву та області. Ціни вказані «від» — точну суму назвемо за телефоном, вона залежить від обʼєму та фасування. Ціну на пісок уточнюйте за телефоном.", ask: "ціна за телефоном",
     from: "від", unit: "грн/скл.м³", heat: "Тепловіддача", order: "Замовити",
@@ -62,18 +61,61 @@ function page(L) {
     },
   ];
 
-  const productCards = catalog.flatMap((c) => c.items.map((i) => `
-        <article class="card item-card" id="item-${i.id}">
-          <div class="item-img${i.img ? "" : ` noimg cat-${c.id}`}">${i.img
-            ? `<img src="${i.img}" alt="${esc(name(i))} — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async">`
-            : `<span aria-hidden="true">${c.icon}</span>`}${i.tag ? `<span class="tag">${esc(i.tag[L])}</span>` : ""}</div>
-          <div class="item-body">
-            <small class="item-cat">${esc(name(c))}</small>
-            <h3>${esc(name(i))}</h3>
-            <div class="price">${i.price ? `<small>${t.from}</small> <b>${fmt(i.price)}</b> <small>грн/${unit(i)}</small>` : `<span class="ask">${t.ask}</span>`}</div>
-            <a class="btn btn-ghost js-pick" href="#order" data-item="${i.id}">${t.order}</a>
-          </div>
-        </article>`)).join("");
+  const thumb = (i, c, cls = "item-img") => `<div class="${cls}${i.img ? "" : ` noimg cat-${c.id}`}">${i.img
+    ? `<img src="${i.img}" alt="${esc(name(i))} — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async">`
+    : `<span aria-hidden="true">${c.icon}</span>`}</div>`;
+  const priceOf = (i) => i.price ? `<small>${t.from}</small> <b>${fmt(i.price)}</b> <small>грн/${unit(i)}</small>` : `<span class="ask">${t.ask}</span>`;
+  const categoryCards = catalog.map((c) => {
+    const priced = c.items.filter((i) => i.price);
+    const min = priced.length ? Math.min(...priced.map((i) => i.price)) : 0;
+    const cover = c.items.find((i) => i.img) || c.items[0];
+    return `
+        <button type="button" class="card cat-card" data-cat="${c.id}" aria-haspopup="dialog">
+          ${thumb(cover, c)}
+          <span class="item-body">
+            <span class="item-cat">${c.items.length} ${c.items.length > 4 ? "позицій" : c.items.length > 1 ? "позиції" : "позиція"}</span>
+            <span class="cat-title">${esc(name(c))}</span>
+            <span class="cat-note">${esc(c.items.map((i) => name(i)).join(" · "))}</span>
+            <span class="price">${min ? `<small>${t.from}</small> <b>${fmt(min)}</b> <small>грн/${unit(priced[0])}</small>` : `<span class="ask">${t.ask}</span>`}</span>
+            <span class="btn btn-ghost">Обрати</span>
+          </span>
+        </button>`;
+  }).join("");
+  const categoryDialogs = catalog.map((c) => `
+<dialog class="sheet" id="dlg-${c.id}" aria-labelledby="dlg-${c.id}-h">
+  <div class="sheet-head"><h2 id="dlg-${c.id}-h">${esc(name(c))}</h2><button type="button" class="x" data-close aria-label="Закрити">×</button></div>
+  <p class="muted">${esc(L === "uk" ? c.noteUk : c.noteRu)}</p>
+  <div class="sheet-list">${c.items.map((i) => `
+    <div class="pick" data-id="${i.id}">
+      ${thumb(i, c, "pick-img")}
+      <div class="pick-info"><h3>${esc(name(i))}</h3><div class="price">${priceOf(i)}</div></div>
+      <div class="pick-act">
+        <div class="qty" aria-label="Кількість"><button type="button" data-dec aria-label="Менше">−</button><input type="number" min="1" max="999" value="1" inputmode="numeric" aria-label="Кількість, ${unit(i)}"><span class="qty-u">${unit(i)}</span><button type="button" data-inc aria-label="Більше">+</button></div>
+        <button type="button" class="btn" data-add="${i.id}">Додати в кошик</button>
+      </div>
+    </div>`).join("")}
+  </div>
+</dialog>`).join("");
+  const cartDialog = `
+<dialog class="sheet" id="dlg-cart" aria-labelledby="dlg-cart-h">
+  <div class="sheet-head"><h2 id="dlg-cart-h">Кошик</h2><button type="button" class="x" data-close aria-label="Закрити">×</button></div>
+  <div id="cartList" class="cart-list"></div>
+  <p class="cart-empty muted" id="cartEmpty">Кошик порожній. Оберіть товари в каталозі.</p>
+  <form id="cartForm" class="order cart-form" novalidate>
+    <div class="cart-total"><span>Орієнтовно</span><b id="cartTotal"></b></div>
+    <label>${t.fName}<input name="name" autocomplete="name" maxlength="60"></label>
+    <label>${t.fPhone} *<input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+380" maxlength="20"></label>
+    <label>Адреса доставки *<input name="address" autocomplete="street-address" required maxlength="160" placeholder="Вулиця, будинок, район"></label>
+    <label>${t.fMsg}<textarea name="comment" rows="2" maxlength="500"></textarea></label>
+    <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <p class="pay-note pay-sm">💳 Оплата при отриманні — нічого платити заздалегідь не потрібно</p>
+    <button class="btn btn-lg btn-block" type="submit">Відправити заявку</button>
+    <p class="policy">Остаточну ціну та час доставки підтвердимо дзвінком. ${t.fPolicy}</p>
+    <p class="form-msg" id="cartMsg" role="status" hidden></p>
+  </form>
+</dialog>
+<button type="button" class="cart-fab" id="cartFab" hidden aria-label="Відкрити кошик">🛒 Кошик <b id="cartCount">0</b></button>`;
+
   const ctaBanner = `
       <div class="cta-card cta-banner">
         <div><h3>${L === "uk" ? "Потрібна консультація?" : "Нужна консультация?"}</h3>
@@ -81,8 +123,6 @@ function page(L) {
         <a class="btn btn-lg" href="tel:${site.phone}">📞 ${site.phoneHuman}</a>
       </div>`;
 
-  const woodOptions = products.map((p) => `<option value="${p.id}">${esc(name(p))} — ${t.from} ${fmt(p.price)} грн</option>`).join("");
-  const itemOptions = catalog.map((c) => `<optgroup label="${esc(name(c))}">${c.items.map((i) => `<option value="${i.id}">${esc(name(i))}</option>`).join("")}</optgroup>`).join("");
 
   return `<!doctype html>
 <html lang="${t.lang}">
@@ -130,6 +170,7 @@ function page(L) {
           <a class="btn btn-lg btn-light" href="#order">${t.heroCta2}</a>
         </div>
         <ul class="points">${t.heroPoints.map((p) => `<li>${p}</li>`).join("")}</ul>
+        <p class="pay-note">🛒 Замовляйте на сайті — оплата при отриманні</p>
       </div>
       <div class="hero-art" aria-hidden="true">
         <div class="stack">${Array.from({ length: 15 }, () => "<span></span>").join("")}</div>
@@ -142,8 +183,9 @@ function page(L) {
   <section id="prices" class="sec">
     <div class="wrap">
       <h2>${t.pricesH}</h2>
+      <p class="pay-note">🛒 Замовляйте на сайті — оплата при отриманні</p>
       <p class="sub">${t.pricesSub}</p>
-      <div class="grid items-grid">${productCards}
+      <div class="grid cats-grid">${categoryCards}
       </div>${ctaBanner}
     </div>
   </section>
@@ -184,18 +226,12 @@ function page(L) {
         </div>
       </div>
       <form class="card order" id="orderForm" novalidate>
+        <h3>Замовити дзвінок</h3>
         <label>${t.fName}<input name="name" autocomplete="name" maxlength="60"></label>
         <label>${t.fPhone} *<input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+380" maxlength="20"></label>
-        <div class="two">
-          <label>${t.fWood}<select name="item" id="fWood">${itemOptions}</select></label>
-          <label>${t.fVol}<input name="volume" id="fVol" inputmode="decimal" maxlength="20" value="4 м³"></label>
-        </div>
-        <label>${t.fAddr}<input name="address" autocomplete="street-address" maxlength="120"></label>
-        <label>${t.fMsg}<textarea name="comment" rows="2" maxlength="500"></textarea></label>
+        <label>${t.fMsg}<textarea name="comment" rows="2" maxlength="500" placeholder="Що потрібно, куди привезти"></textarea></label>
         <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <input type="hidden" name="lang" value="${L}">
-        <input type="hidden" name="estimate" id="fEst">
-        <button class="btn btn-lg btn-block" type="submit">${t.fBtn}</button>
+        <button class="btn btn-lg btn-block" type="submit">Передзвоніть мені</button>
         <p class="policy">${t.fPolicy}</p>
         <p class="form-msg" id="formMsg" role="status" hidden></p>
       </form>
@@ -230,10 +266,11 @@ function page(L) {
 
 <div class="mob-bar">
   <a class="btn btn-light" href="tel:${site.phone}">📞 ${t.mobCall}</a>
-  <a class="btn" href="#order">${t.mobOrder}</a>
+  <button type="button" class="btn" data-open-cart>🛒 Кошик <b class="cart-n">0</b></button>
 </div>
 
-<script>window.SITE=${JSON.stringify({ lang: L, products: products.map((p) => ({ id: p.id, name: name(p), price: p.price, noLength: !!p.noLength })), items: Object.fromEntries(allItems.map((i) => [i.id, { name: name(i), unit: unit(i), calc: !!i.calc }])), freeFrom: deliveryFreeFrom, fee: deliveryFee, ok: t.fOk, err: t.fErr, phone: site.phoneHuman, tel: site.phone, free: t.calcFree })};</script>
+<script>window.SITE=${JSON.stringify({ items: Object.fromEntries(catalog.flatMap((c) => c.items.map((i) => [i.id, { name: name(i), unit: unit(i), price: i.price || 0, cat: name(c) }]))), ok: t.fOk, err: t.fErr, phone: site.phoneHuman, tel: site.phone })};</script>
+${categoryDialogs}${cartDialog}
 <script src="/app.js" defer></script>
 </body>
 </html>
