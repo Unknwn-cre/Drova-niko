@@ -41,6 +41,11 @@
     inp.dispatchEvent(new Event("change", { bubbles: true }));
   });
 
+  // typing your own amount: select on focus, clamp on blur/Enter
+  document.addEventListener("focusin", (e) => { if (e.target.matches(".qty input")) setTimeout(() => e.target.select(), 0); });
+  document.addEventListener("focusout", (e) => { if (e.target.matches(".qty input")) { e.target.value = clampQty(e.target.value); e.target.dispatchEvent(new Event("change", { bubbles: true })); } });
+  document.addEventListener("keydown", (e) => { if (e.key === "Enter" && e.target.matches(".qty input")) { e.preventDefault(); e.target.blur(); } });
+
   // add to cart
   $$("[data-add]").forEach((b) => b.addEventListener("click", () => {
     const id = b.dataset.add;

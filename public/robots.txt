@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Sitemap: https://drova-niko.com.ua/sitemap.xml
+Sitemap: https://ygol-niko.com/sitemap.xml
