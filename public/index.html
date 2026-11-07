@@ -57,7 +57,6 @@
   <section id="prices" class="sec">
     <div class="wrap">
       <h2>Каталог і ціни</h2>
-      <p class="pay-note">🛒 Замовляйте на сайті — оплата при отриманні</p>
       <p class="sub">Дрова, брикети, пелети, вугілля та пісок з доставкою по Миколаєву та області. Ціни вказані «від» — точну суму назвемо за телефоном, вона залежить від обʼєму та фасування. Ціну на пісок уточнюйте за телефоном.</p>
       <div class="grid cats-grid">
         <button type="button" class="card cat-card" data-cat="firewood" aria-haspopup="dialog">
@@ -193,7 +192,7 @@
   <button type="button" class="btn" data-open-cart>🛒 Кошик <b class="cart-n">0</b></button>
 </div>
 
-<script>window.SITE={"items":{"split":{"name":"Колоті дрова","unit":"скл.м³","price":3500,"cat":"Дрова для опалення"},"sawn":{"name":"Пиляні дрова","unit":"скл.м³","price":3500,"cat":"Дрова для опалення"},"meter":{"name":"Метрові дрова","unit":"скл.м³","price":3500,"cat":"Дрова для опалення"},"br-wood":{"name":"Деревні брикети","unit":"т","price":11000,"cat":"Паливні брикети"},"br-peat":{"name":"Торфʼяні брикети","unit":"т","price":11000,"cat":"Паливні брикети"},"br-husk":{"name":"Брикети з лушпиння","unit":"т","price":11000,"cat":"Паливні брикети"},"pel-agro":{"name":"Агропелети","unit":"т","price":11000,"cat":"Паливні пелети"},"pel-sun":{"name":"Соняшникові пелети","unit":"т","price":11000,"cat":"Паливні пелети"},"coal-dg-bulk":{"name":"Вугілля ДГ навалом","unit":"т","price":14000,"cat":"Вугілля для опалення"},"coal-dg-bags":{"name":"Вугілля ДГ у мішках","unit":"т","price":14000,"cat":"Вугілля для опалення"},"sand-river":{"name":"Річковий митий пісок","unit":"т","price":0,"cat":"Пісок"},"sand-quarry":{"name":"Карʼєрний жовтий пісок","unit":"т","price":0,"cat":"Пісок"}},"ok":"Дякуємо! Заявку прийнято — передзвонимо протягом 5 хвилин.","err":"Не вдалося надіслати. Подзвоніть нам, будь ласка:","phone":"+38 (050) 394-75-71","tel":"+380503947571"};</script>
+<script>window.SITE={"items":{"split":{"name":"Колоті дрова","unit":"скл.м³","price":3500,"cat":"Дрова для опалення"},"sawn":{"name":"Пиляні дрова","unit":"скл.м³","price":3500,"cat":"Дрова для опалення"},"meter":{"name":"Метрові дрова","unit":"скл.м³","price":3500,"cat":"Дрова для опалення"},"br-wood":{"name":"Деревні брикети","unit":"т","price":11000,"cat":"Паливні брикети"},"br-peat":{"name":"Торфʼяні брикети","unit":"т","price":11000,"cat":"Паливні брикети"},"br-husk":{"name":"Брикети з лушпиння","unit":"т","price":11000,"cat":"Паливні брикети"},"pel-agro":{"name":"Агропелети","unit":"т","price":11000,"cat":"Паливні пелети"},"pel-sun":{"name":"Соняшникові пелети","unit":"т","price":11000,"cat":"Паливні пелети"},"coal-dg-bulk":{"name":"Вугілля ДГ навалом","unit":"т","price":14000,"cat":"Вугілля для опалення"},"coal-dg-bags":{"name":"Вугілля ДГ у мішках","unit":"т","price":14000,"cat":"Вугілля для опалення"},"sand-river":{"name":"Річковий митий пісок","unit":"т","price":0,"cat":"Пісок"},"sand-quarry":{"name":"Карʼєрний жовтий пісок","unit":"т","price":0,"cat":"Пісок"}},"ok":"Дякуємо! Заявку прийнято — передзвонимо протягом 5 хвилин.","okCart":"Дякуємо! Заявку прийнято. Замовлення надходить у роботу після підтвердження по дзвінку — ми передзвонимо протягом 5 хвилин.","err":"Не вдалося надіслати. Подзвоніть нам, будь ласка:","phone":"+38 (050) 394-75-71","tel":"+380503947571"};</script>
 
 <dialog class="sheet" id="dlg-firewood" aria-labelledby="dlg-firewood-h">
   <div class="sheet-head"><h2 id="dlg-firewood-h">Дрова для опалення</h2><button type="button" class="x" data-close aria-label="Закрити">×</button></div>
@@ -333,8 +332,9 @@
     <label>Коментар (необовʼязково)<textarea name="comment" rows="2" maxlength="500"></textarea></label>
     <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <p class="pay-note pay-sm">💳 Оплата при отриманні — нічого платити заздалегідь не потрібно</p>
+    <p class="pay-note pay-sm">📞 Замовлення надходить у роботу після підтвердження по дзвінку</p>
     <button class="btn btn-lg btn-block" type="submit">Відправити заявку</button>
-    <p class="policy">Остаточну ціну та час доставки підтвердимо дзвінком. Натискаючи кнопку, ви погоджуєтесь на обробку даних для звʼязку з вами.</p>
+    <p class="policy">Остаточну ціну та час доставки уточнимо під час дзвінка. Натискаючи кнопку, ви погоджуєтесь на обробку даних для звʼязку з вами.</p>
     <p class="form-msg" id="cartMsg" role="status" hidden></p>
   </form>
 </dialog>
