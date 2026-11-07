@@ -174,7 +174,7 @@ function page(L) {
         <p class="pay-note">🛒 Замовляйте на сайті — оплата при отриманні</p>
       </div>
       <div class="hero-art" aria-hidden="true">
-        <img class="hero-photo" src="/img/hero.webp" alt="" width="880" height="880" fetchpriority="high">
+        <img class="hero-photo" src="/img/hero-fuel.webp" alt="Дрова, паливні брикети та вугілля" width="1100" height="669" fetchpriority="high">
         <div class="price-bubble">${L === "uk" ? "Дрова" : "Дрова"} ${t.from} <b>${fmt(minPrice)}</b> грн/м³</div>
       </div>
     </div>
