@@ -22,9 +22,9 @@ export const catalog = [
     noteUk: "Дуб, ясен, граб, акація. Чесний складометр — міряємо при вас.",
     noteRu: "Дуб, ясень, граб, акация. Честный складометр — меряем при вас.",
     items: [
-      { id: "split", uk: "Колоті дрова", ru: "Колотые дрова", price: 3500, unitUk: "скл.м³", unitRu: "скл.м³", calc: true, tag: { uk: "Хіт", ru: "Хит" } },
-      { id: "sawn", uk: "Пиляні дрова", ru: "Пиленые дрова", price: 3500, unitUk: "скл.м³", unitRu: "скл.м³", calc: true },
-      { id: "meter", uk: "Метрові дрова", ru: "Метровые дрова", price: 3500, unitUk: "скл.м³", unitRu: "скл.м³", calc: true, noLength: true },
+      { id: "split", img: "/img/split.webp", uk: "Колоті дрова", ru: "Колотые дрова", price: 3500, unitUk: "скл.м³", unitRu: "скл.м³", calc: true, tag: { uk: "Хіт", ru: "Хит" } },
+      { id: "sawn", img: "/img/sawn.webp", uk: "Пиляні дрова", ru: "Пиленые дрова", price: 3500, unitUk: "скл.м³", unitRu: "скл.м³", calc: true },
+      { id: "meter", img: "/img/meter.webp", uk: "Метрові дрова", ru: "Метровые дрова", price: 3500, unitUk: "скл.м³", unitRu: "скл.м³", calc: true, noLength: true },
     ],
   },
   {
@@ -33,9 +33,9 @@ export const catalog = [
     noteUk: "Горять довше за дрова, мало золи, зручно зберігати.",
     noteRu: "Горят дольше дров, мало золы, удобно хранить.",
     items: [
-      { id: "br-wood", uk: "Деревні брикети", ru: "Древесные брикеты", price: 11000, unitUk: "т", unitRu: "т" },
-      { id: "br-peat", uk: "Торфʼяні брикети", ru: "Торфяные брикеты", price: 11000, unitUk: "т", unitRu: "т" },
-      { id: "br-husk", uk: "Брикети з лушпиння", ru: "Брикеты из лузги", price: 11000, unitUk: "т", unitRu: "т" },
+      { id: "br-wood", img: "/img/br-wood.webp", uk: "Деревні брикети", ru: "Древесные брикеты", price: 11000, unitUk: "т", unitRu: "т" },
+      { id: "br-peat", img: "/img/br-peat.webp", uk: "Торфʼяні брикети", ru: "Торфяные брикеты", price: 11000, unitUk: "т", unitRu: "т" },
+      { id: "br-husk", img: "/img/br-husk.webp", uk: "Брикети з лушпиння", ru: "Брикеты из лузги", price: 11000, unitUk: "т", unitRu: "т" },
     ],
   },
   {
@@ -44,8 +44,8 @@ export const catalog = [
     noteUk: "Для пелетних котлів. У мішках або на палетах.",
     noteRu: "Для пеллетных котлов. В мешках или на паллетах.",
     items: [
-      { id: "pel-agro", uk: "Агропелети", ru: "Агропеллеты", price: 11000, unitUk: "т", unitRu: "т" },
-      { id: "pel-sun", uk: "Соняшникові пелети", ru: "Подсолнечные пеллеты", price: 11000, unitUk: "т", unitRu: "т" },
+      { id: "pel-agro", img: "/img/pel-agro.webp", uk: "Агропелети", ru: "Агропеллеты", price: 11000, unitUk: "т", unitRu: "т" },
+      { id: "pel-sun", img: "/img/pel-sun.webp", uk: "Соняшникові пелети", ru: "Подсолнечные пеллеты", price: 11000, unitUk: "т", unitRu: "т" },
     ],
   },
   {

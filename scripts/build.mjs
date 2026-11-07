@@ -62,24 +62,24 @@ function page(L) {
     },
   ];
 
-  const productCards = catalog.map((c) => `
-        <article class="card product cat-${c.id}" id="cat-${c.id}">
-          <div class="cat-ico" aria-hidden="true">${c.icon}</div>
-          <h3>${esc(name(c))}</h3>
-          <p>${esc(L === "uk" ? c.noteUk : c.noteRu)}</p>
-          <ul class="items">${c.items.map((i) => `
-            <li>${i.tag ? `<span class="tag-in">${esc(i.tag[L])}</span>` : ""}<span>${esc(name(i))}</span>
-              <b>${i.price ? `${t.from} ${fmt(i.price)} <small>грн/${unit(i)}</small>` : `<small>${t.ask}</small>`}</b></li>`).join("")}
-          </ul>
-          <a class="btn btn-ghost js-pick" href="#order" data-item="${c.items[0].id}">${t.order}</a>
-        </article>`).join("") + `
-        <article class="card product cta-card">
-          <div class="cat-ico" aria-hidden="true">📞</div>
-          <h3>${L === "uk" ? "Потрібна консультація?" : "Нужна консультация?"}</h3>
-          <p>${L === "uk" ? "Підберемо паливо під ваш котел чи піч, назвемо актуальні ціни та час доставки." : "Подберём топливо под ваш котёл или печь, назовём актуальные цены и время доставки."}</p>
-          <a class="big-phone" href="tel:${site.phone}">${site.phoneHuman}</a>
-          <a class="btn btn-block" href="tel:${site.phone}">${t.call}</a>
-        </article>`;
+  const productCards = catalog.flatMap((c) => c.items.map((i) => `
+        <article class="card item-card" id="item-${i.id}">
+          <div class="item-img${i.img ? "" : ` noimg cat-${c.id}`}">${i.img
+            ? `<img src="${i.img}" alt="${esc(name(i))} — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async">`
+            : `<span aria-hidden="true">${c.icon}</span>`}${i.tag ? `<span class="tag">${esc(i.tag[L])}</span>` : ""}</div>
+          <div class="item-body">
+            <small class="item-cat">${esc(name(c))}</small>
+            <h3>${esc(name(i))}</h3>
+            <div class="price">${i.price ? `<small>${t.from}</small> <b>${fmt(i.price)}</b> <small>грн/${unit(i)}</small>` : `<span class="ask">${t.ask}</span>`}</div>
+            <a class="btn btn-ghost js-pick" href="#order" data-item="${i.id}">${t.order}</a>
+          </div>
+        </article>`)).join("");
+  const ctaBanner = `
+      <div class="cta-card cta-banner">
+        <div><h3>${L === "uk" ? "Потрібна консультація?" : "Нужна консультация?"}</h3>
+        <p>${L === "uk" ? "Підберемо паливо під ваш котел чи піч, назвемо актуальні ціни та час доставки." : "Подберём топливо под ваш котёл или печь, назовём актуальные цены и время доставки."}</p></div>
+        <a class="btn btn-lg" href="tel:${site.phone}">📞 ${site.phoneHuman}</a>
+      </div>`;
 
   const woodOptions = products.map((p) => `<option value="${p.id}">${esc(name(p))} — ${t.from} ${fmt(p.price)} грн</option>`).join("");
   const itemOptions = catalog.map((c) => `<optgroup label="${esc(name(c))}">${c.items.map((i) => `<option value="${i.id}">${esc(name(i))}</option>`).join("")}</optgroup>`).join("");
@@ -143,8 +143,8 @@ function page(L) {
     <div class="wrap">
       <h2>${t.pricesH}</h2>
       <p class="sub">${t.pricesSub}</p>
-      <div class="grid products">${productCards}
-      </div>
+      <div class="grid items-grid">${productCards}
+      </div>${ctaBanner}
     </div>
   </section>
 
