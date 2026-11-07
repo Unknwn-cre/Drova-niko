@@ -3,6 +3,7 @@
 export const site = {
   domain: "https://ygol-niko.com",
   gtm: "GTM-WGMGRPQS", // Google Tag Manager
+  adsId: "AW-18546085051", // Google Ads (gtag.js)
   brand: "Склад твердого палива та сипучих матеріалів",
   phone: "+380503947571",
   phoneHuman: "+38 (050) 394-75-71",
