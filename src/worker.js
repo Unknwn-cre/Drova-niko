@@ -44,8 +44,28 @@ async function handleOrder(request, env) {
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, text: lines, parse_mode: "HTML" }),
   });
-  if (!r.ok) { console.error("telegram", r.status, await r.text()); return json({ ok: false }, 502); }
+  if (!r.ok) {
+    const t = await r.text();
+    console.error("telegram", r.status, t, "\nORDER (not delivered):\n" + lines);
+    let description = ""; try { description = JSON.parse(t).description || ""; } catch {}
+    return json({ ok: false, error: "telegram", status: r.status, description }, 502);
+  }
   return json({ ok: true });
+}
+
+// GET /api/health — перевірка налаштувань Telegram без надсилання повідомлень (секрети не показує)
+async function health(env) {
+  const out = { token_set: !!env.TELEGRAM_BOT_TOKEN, chat_id_set: !!env.TELEGRAM_CHAT_ID, bot: null, chat: null };
+  if (out.token_set) {
+    const me = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/getMe`).then((r) => r.json()).catch(() => null);
+    out.bot = me?.ok ? "@" + me.result.username : (me?.description || "no answer");
+    if (me?.ok && out.chat_id_set) {
+      const ch = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/getChat?chat_id=${encodeURIComponent(env.TELEGRAM_CHAT_ID)}`).then((r) => r.json()).catch(() => null);
+      out.chat = ch?.ok ? "ok (" + (ch.result.title || ch.result.first_name || ch.result.type) + ")" : (ch?.description || "no answer");
+    }
+  }
+  out.ready = out.token_set && out.chat_id_set && String(out.chat).startsWith("ok");
+  return json(out);
 }
 
 function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
@@ -54,6 +74,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname === "/ru" || url.pathname.startsWith("/ru/")) return Response.redirect(url.origin + "/", 301);
+    if (url.pathname === "/api/health") return health(env);
     if (url.pathname === "/api/order") {
       if (request.method !== "POST") return json({ ok: false }, 405);
       return handleOrder(request, env);
