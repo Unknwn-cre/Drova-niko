@@ -12,6 +12,18 @@
     d.addEventListener("click", (e) => { if (e.target === d || e.target.closest("[data-close]")) d.close(); });
   });
 
+  // ---- photo lightbox (tap a product photo in a category dialog)
+  const photo = $("#dlg-photo");
+  document.addEventListener("click", (e) => {
+    const img = e.target.closest(".pick-img img");
+    if (!img) return;
+    $("#photoImg").src = img.currentSrc || img.src;
+    $("#photoImg").alt = img.alt;
+    $("#photoCap").textContent = img.closest(".pick")?.querySelector("h3")?.textContent || "";
+    open(photo);
+  });
+  photo.addEventListener("click", (e) => { if (e.target === photo || e.target.closest("[data-close]") || e.target.id === "photoImg") photo.close(); });
+
   // ---- cart state
   let cart = {};
   try { cart = JSON.parse(localStorage.getItem("cart") || "{}") || {}; } catch { cart = {}; }

@@ -342,3 +342,12 @@ dialog.sheet::backdrop{background:rgba(31,26,20,.55);backdrop-filter:blur(3px)}
   .hero-art .price-bubble{left:-14%}
 }
 .item-img.cat-gravel,.pick-img.cat-gravel{background:linear-gradient(135deg,#cfcac3,#8f8981)}
+
+/* photo lightbox */
+.pick-img img{cursor:zoom-in}
+dialog.lightbox{border:0;padding:0;background:transparent;max-width:min(92vw,900px);width:100%;overflow:visible}
+dialog.lightbox::backdrop{background:rgba(20,14,8,.82)}
+dialog.lightbox img{display:block;width:100%;height:auto;max-height:80vh;object-fit:contain;border-radius:16px;background:#fff;cursor:zoom-out}
+dialog.lightbox p{color:#fff;text-align:center;font-weight:700;margin:12px 0 0}
+dialog.lightbox .x{position:absolute;top:-14px;right:-14px;z-index:1;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+@media (max-width:640px){dialog.lightbox .x{top:-52px;right:0}}

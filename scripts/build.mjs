@@ -97,6 +97,11 @@ function page(L) {
   </div>
 </dialog>`).join("");
   const cartDialog = `
+<dialog class="lightbox" id="dlg-photo" aria-label="Фото товару">
+  <button type="button" class="x" data-close aria-label="Закрити">×</button>
+  <img id="photoImg" src="data:," alt="">
+  <p id="photoCap"></p>
+</dialog>
 <dialog class="sheet" id="dlg-cart" aria-labelledby="dlg-cart-h">
   <div class="sheet-head"><h2 id="dlg-cart-h">Кошик</h2><button type="button" class="x" data-close aria-label="Закрити">×</button></div>
   <div id="cartList" class="cart-list"></div>
