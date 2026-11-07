@@ -315,7 +315,7 @@ dialog.sheet::backdrop{background:rgba(31,26,20,.55);backdrop-filter:blur(3px)}
 /* photo background instead of orange fill (user's own firewood photo) */
 .sec-dark,.cta-card{background:
   linear-gradient(90deg,rgba(28,18,10,.88) 0%,rgba(28,18,10,.72) 55%,rgba(28,18,10,.55) 100%),
-  url(/img/gravel-20-40.webp) center/cover no-repeat,#2a1c12}
+  url(/img/bg-gravel.webp) center/cover no-repeat,#2a1c12}
 .sec-dark::before{display:none}
 .sec-dark .sub,.sec-dark .muted,.cta-card p{color:#efe4d6}
 .sec-dark .card{box-shadow:0 20px 50px rgba(0,0,0,.45)}
@@ -355,3 +355,8 @@ dialog.lightbox .x{position:absolute;top:-14px;right:-14px;z-index:1;background:
 /* long brand name in header */
 .logo span{font-size:16px;line-height:1.15;max-width:240px}
 @media (max-width:640px){.logo span{font-size:14px;max-width:200px}}
+
+/* qty: visibly editable field (type your own amount) */
+.qty input{width:60px;height:32px;font-size:16px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg-alt);cursor:text}
+.qty input:focus{outline:none;border-color:var(--fire);background:#fff}
+.qty-u{padding:0 2px 0 6px}
