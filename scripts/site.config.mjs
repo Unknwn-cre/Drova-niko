@@ -21,9 +21,9 @@ export const catalog = [
     noteUk: "Дуб, ясен, граб, акація. Чесний складометр — міряємо при вас.",
     noteRu: "Дуб, ясень, граб, акация. Честный складометр — меряем при вас.",
     items: [
-      { id: "split", uk: "Колоті дрова", ru: "Колотые дрова", price: 2300, unitUk: "скл.м³", unitRu: "скл.м³", calc: true, tag: { uk: "Хіт", ru: "Хит" } }, // TODO: реальная цена
-      { id: "sawn", uk: "Пиляні дрова", ru: "Пиленые дрова", price: 2100, unitUk: "скл.м³", unitRu: "скл.м³", calc: true }, // TODO
-      { id: "meter", uk: "Метрові дрова", ru: "Метровые дрова", price: 1800, unitUk: "скл.м³", unitRu: "скл.м³", calc: true, noLength: true }, // TODO
+      { id: "split", uk: "Колоті дрова", ru: "Колотые дрова", price: 3500, unitUk: "скл.м³", unitRu: "скл.м³", calc: true, tag: { uk: "Хіт", ru: "Хит" } },
+      { id: "sawn", uk: "Пиляні дрова", ru: "Пиленые дрова", price: 3500, unitUk: "скл.м³", unitRu: "скл.м³", calc: true },
+      { id: "meter", uk: "Метрові дрова", ru: "Метровые дрова", price: 3500, unitUk: "скл.м³", unitRu: "скл.м³", calc: true, noLength: true },
     ],
   },
   {
@@ -32,9 +32,9 @@ export const catalog = [
     noteUk: "Горять довше за дрова, мало золи, зручно зберігати.",
     noteRu: "Горят дольше дров, мало золы, удобно хранить.",
     items: [
-      { id: "br-wood", uk: "Деревні брикети", ru: "Древесные брикеты", price: null, unitUk: "т", unitRu: "т" },
-      { id: "br-peat", uk: "Торфʼяні брикети", ru: "Торфяные брикеты", price: null, unitUk: "т", unitRu: "т" },
-      { id: "br-husk", uk: "Брикети з лушпиння", ru: "Брикеты из лузги", price: null, unitUk: "т", unitRu: "т" },
+      { id: "br-wood", uk: "Деревні брикети", ru: "Древесные брикеты", price: 11000, unitUk: "т", unitRu: "т" },
+      { id: "br-peat", uk: "Торфʼяні брикети", ru: "Торфяные брикеты", price: 11000, unitUk: "т", unitRu: "т" },
+      { id: "br-husk", uk: "Брикети з лушпиння", ru: "Брикеты из лузги", price: 11000, unitUk: "т", unitRu: "т" },
     ],
   },
   {
@@ -43,8 +43,8 @@ export const catalog = [
     noteUk: "Для пелетних котлів. У мішках або на палетах.",
     noteRu: "Для пеллетных котлов. В мешках или на паллетах.",
     items: [
-      { id: "pel-agro", uk: "Агропелети", ru: "Агропеллеты", price: null, unitUk: "т", unitRu: "т" },
-      { id: "pel-sun", uk: "Соняшникові пелети", ru: "Подсолнечные пеллеты", price: null, unitUk: "т", unitRu: "т" },
+      { id: "pel-agro", uk: "Агропелети", ru: "Агропеллеты", price: 11000, unitUk: "т", unitRu: "т" },
+      { id: "pel-sun", uk: "Соняшникові пелети", ru: "Подсолнечные пеллеты", price: 11000, unitUk: "т", unitRu: "т" },
     ],
   },
   {
@@ -53,8 +53,8 @@ export const catalog = [
     noteUk: "Вугілля ДГ — навалом або у мішках.",
     noteRu: "Уголь ДГ — навалом или в мешках.",
     items: [
-      { id: "coal-dg-bulk", uk: "Вугілля ДГ навалом", ru: "Уголь ДГ навалом", price: null, unitUk: "т", unitRu: "т" },
-      { id: "coal-dg-bags", uk: "Вугілля ДГ у мішках", ru: "Уголь ДГ в мешках", price: null, unitUk: "т", unitRu: "т" },
+      { id: "coal-dg-bulk", uk: "Вугілля ДГ навалом", ru: "Уголь ДГ навалом", price: 14000, unitUk: "т", unitRu: "т" },
+      { id: "coal-dg-bags", uk: "Вугілля ДГ у мішках", ru: "Уголь ДГ в мешках", price: 14000, unitUk: "т", unitRu: "т" },
     ],
   },
   {
