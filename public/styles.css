@@ -311,3 +311,13 @@ dialog.sheet::backdrop{background:rgba(31,26,20,.55);backdrop-filter:blur(3px)}
 .pay-note{display:inline-block;margin:18px 0 0;padding:10px 16px;border-radius:12px;background:#fff1e4;color:var(--fire-d);font-weight:800;font-size:17px;border:1.5px dashed var(--fire)}
 #prices .pay-note{margin:0 0 20px}
 .pay-sm{font-size:14px;margin:4px 0 12px;display:block}
+
+/* photo background instead of orange fill (user's own firewood photo) */
+.sec-dark,.cta-card{background:
+  linear-gradient(90deg,rgba(28,18,10,.88) 0%,rgba(28,18,10,.72) 55%,rgba(28,18,10,.55) 100%),
+  url(/img/stock-bg.webp) center/cover no-repeat,#2a1c12}
+.sec-dark::before{display:none}
+.sec-dark .sub,.sec-dark .muted,.cta-card p{color:#efe4d6}
+.sec-dark .card{box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.cta-card .btn{background:var(--fire);color:#fff}
+.cta-card .btn:hover{background:var(--fire-d)}
