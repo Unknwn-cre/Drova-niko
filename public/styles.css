@@ -315,7 +315,7 @@ dialog.sheet::backdrop{background:rgba(31,26,20,.55);backdrop-filter:blur(3px)}
 /* photo background instead of orange fill (user's own firewood photo) */
 .sec-dark,.cta-card{background:
   linear-gradient(90deg,rgba(28,18,10,.88) 0%,rgba(28,18,10,.72) 55%,rgba(28,18,10,.55) 100%),
-  url(/img/stock-bg.webp) center/cover no-repeat,#2a1c12}
+  url(/img/gravel-20-40.webp) center/cover no-repeat,#2a1c12}
 .sec-dark::before{display:none}
 .sec-dark .sub,.sec-dark .muted,.cta-card p{color:#efe4d6}
 .sec-dark .card{box-shadow:0 20px 50px rgba(0,0,0,.45)}
@@ -334,12 +334,12 @@ dialog.sheet::backdrop{background:rgba(31,26,20,.55);backdrop-filter:blur(3px)}
 /* hero image 50% bigger (per user); overflows into the page margin on wide screens */
 @media (min-width:1200px){
   .hero-art{max-width:none;justify-self:stretch}
-  .hero-photo{width:140%;max-width:none;margin-left:-18%}
-  .hero-art .price-bubble{left:-14%;bottom:4%}
+  .hero-photo{width:110%;max-width:none;margin-left:-2%}
+  .hero-art .price-bubble{left:-6%;bottom:4%}
 }
 @media (min-width:1560px){
-  .hero-photo{width:150%;margin-left:-18%}
-  .hero-art .price-bubble{left:-14%}
+  .hero-photo{width:115%;margin-left:-2%}
+  .hero-art .price-bubble{left:-6%}
 }
 .item-img.cat-gravel,.pick-img.cat-gravel{background:linear-gradient(135deg,#cfcac3,#8f8981)}
 

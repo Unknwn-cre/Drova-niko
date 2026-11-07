@@ -17,38 +17,6 @@ export const site = {
 // calc: true — позиция участвует в калькуляторе (цена за складометр).
 export const catalog = [
   {
-    id: "firewood", icon: "🪵",
-    uk: "Дрова для опалення", ru: "Дрова для отопления",
-    noteUk: "Дуб, ясен, граб, акація. Чесний складометр — міряємо при вас.",
-    noteRu: "Дуб, ясень, граб, акация. Честный складометр — меряем при вас.",
-    items: [
-      { id: "split", img: "/img/split.webp", uk: "Колоті дрова", ru: "Колотые дрова", price: 3500, unitUk: "скл.м³", unitRu: "скл.м³", calc: true, tag: { uk: "Хіт", ru: "Хит" } },
-      { id: "sawn", img: "/img/sawn.webp", uk: "Пиляні дрова", ru: "Пиленые дрова", price: 3500, unitUk: "скл.м³", unitRu: "скл.м³", calc: true },
-      { id: "meter", img: "/img/meter.webp", uk: "Метрові дрова", ru: "Метровые дрова", price: 3500, unitUk: "скл.м³", unitRu: "скл.м³", calc: true, noLength: true },
-    ],
-  },
-  {
-    id: "briquettes", icon: "🧱", img: "/img/cat-briquettes.webp", // фото картки категорії
-    uk: "Паливні брикети", ru: "Топливные брикеты",
-    noteUk: "Горять довше за дрова, мало золи, зручно зберігати.",
-    noteRu: "Горят дольше дров, мало золы, удобно хранить.",
-    items: [
-      { id: "br-wood", img: "/img/br-wood.webp", uk: "Деревні брикети", ru: "Древесные брикеты", price: 11000, unitUk: "т", unitRu: "т" },
-      { id: "br-peat", img: "/img/br-peat.webp", uk: "Торфʼяні брикети", ru: "Торфяные брикеты", price: 11000, unitUk: "т", unitRu: "т" },
-      { id: "br-husk", img: "/img/br-husk.webp", uk: "Брикети з лушпиння", ru: "Брикеты из лузги", price: 11000, unitUk: "т", unitRu: "т" },
-    ],
-  },
-  {
-    id: "pellets", icon: "🌻",
-    uk: "Паливні пелети", ru: "Топливные пеллеты",
-    noteUk: "Для пелетних котлів. У мішках або на палетах.",
-    noteRu: "Для пеллетных котлов. В мешках или на паллетах.",
-    items: [
-      { id: "pel-agro", img: "/img/pel-agro.webp", uk: "Агропелети", ru: "Агропеллеты", price: 11000, unitUk: "т", unitRu: "т" },
-      { id: "pel-sun", img: "/img/pel-sun.webp", uk: "Соняшникові пелети", ru: "Подсолнечные пеллеты", price: 11000, unitUk: "т", unitRu: "т" },
-    ],
-  },
-  {
     id: "coal", icon: "⚫",
     uk: "Вугілля для опалення", ru: "Уголь для отопления",
     noteUk: "Вугілля марки ДГ, фракції 13–100 та 50–100 мм. Навалом або у мішках.",
