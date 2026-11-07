@@ -73,7 +73,6 @@ function page(L) {
         <button type="button" class="card cat-card" data-cat="${c.id}" aria-haspopup="dialog">
           ${thumb(cover, c)}
           <span class="item-body">
-            <span class="item-cat">${c.items.length} ${c.items.length > 4 ? "позицій" : c.items.length > 1 ? "позиції" : "позиція"}</span>
             <span class="cat-title">${esc(name(c))}</span>
             <span class="cat-note">${esc(c.items.map((i) => name(i)).join(" · "))}</span>
             <span class="price">${min ? `${priced.every((i) => i.exact && i.price === min) ? "" : `<small>${t.from}</small> `}<b>${fmt(min)}</b> <small>грн/${unit(priced[0])}</small>` : `<span class="ask">${t.ask}</span>`}</span>
