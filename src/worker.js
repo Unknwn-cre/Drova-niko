@@ -17,11 +17,12 @@ async function handleOrder(request, env) {
   const fmt = (n) => Math.round(n).toLocaleString("uk-UA");
   let total = 0, approx = false;
   const itemLines = items.map((i) => {
-    const qty = Math.max(1, Math.min(999, Number(i.qty) || 1));
+    const q0 = Math.round(Number(String(i.qty).replace(",", ".")) * 10) / 10;
+    const qty = Math.max(0.1, Math.min(999, q0 > 0 ? q0 : 1));
     const price = Number(i.price) || 0;
     total += price * qty;
     if (price && !i.exact) approx = true;
-    return `• ${esc(clip(i.name, 60))} — ${qty} ${esc(clip(i.unit, 10))}${price ? ` (${i.exact ? "" : "від "}${fmt(price * qty)} грн)` : ""}`;
+    return `• ${esc(clip(i.name, 60))} — ${String(qty).replace(".", ",")} ${esc(clip(i.unit, 10))}${price ? ` (${i.exact ? "" : "від "}${fmt(price * qty)} грн)` : ""}`;
   });
   const lines = [
     d.type === "callback" ? "📞 <b>Замовлення дзвінка</b>" : "🛒 <b>Нова заявка з сайту</b>",
