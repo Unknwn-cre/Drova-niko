@@ -5,6 +5,12 @@
   const fmt = (n) => Math.round(n).toLocaleString("uk-UA");
   const phoneOk = (v) => v.replace(/\D/g, "").length >= 10;
 
+  // доставка сьогодні / завтра за київським часом: 00:00–14:59 — сьогодні, з 15:00 — завтра
+  const kyivHour = () => { try { return +new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Kyiv", hour: "2-digit", hourCycle: "h23" }).format(new Date()); } catch { return new Date().getHours(); } };
+  const DAY = { today: { h1: "сьогодні", pt: "Доставка за 2–4 години", dl: "в день замовлення" }, tomorrow: { h1: "завтра", pt: "Доставка завтра", dl: "наступного дня" } };
+  const setDay = () => { const t = DAY[kyivHour() < 15 ? "today" : "tomorrow"]; $$("[data-day]").forEach((el) => { el.textContent = t[el.dataset.day]; }); };
+  setDay(); setInterval(setDay, 60000);
+
   // ---- dialogs
   const open = (d) => { if (d && !d.open) d.showModal(); };
   $$("[data-cat]").forEach((b) => b.addEventListener("click", () => open($("#dlg-" + b.dataset.cat))));
