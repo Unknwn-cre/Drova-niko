@@ -64,8 +64,9 @@ export const catalog = [
     noteUk: "Для будівництва, стяжки, кладки та благоустрою.",
     noteRu: "Для строительства, стяжки, кладки и благоустройства.",
     items: [
-      { id: "sand-river", img: "/img/sand-river.webp", uk: "Річковий митий пісок", ru: "Речной мытый песок", price: null, unitUk: "т", unitRu: "т" },
-      { id: "sand-quarry", img: "/img/sand-quarry.webp", uk: "Карʼєрний жовтий пісок", ru: "Карьерный жёлтый песок", price: null, unitUk: "т", unitRu: "т" },
+      { id: "sand-river", img: "/img/sand-river.webp", uk: "Річковий митий пісок", ru: "Речной мытый песок", price: 1000, unitUk: "т", unitRu: "т" },
+      { id: "sand-river-sifted", img: "/img/sand-river.webp", uk: "Річковий сіяний пісок", ru: "Речной сеяный песок", price: 750, unitUk: "т", unitRu: "т" },
+      { id: "sand-quarry", img: "/img/sand-quarry.webp", uk: "Карʼєрний жовтий пісок", ru: "Карьерный жёлтый песок", price: 700, unitUk: "т", unitRu: "т" },
     ],
   },
   {
