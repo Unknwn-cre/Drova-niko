@@ -54,8 +54,8 @@ export const catalog = [
     noteUk: "Вугілля марки ДГ, фракції 13–100 та 50–200 мм. Навалом або у мішках.",
     noteRu: "Уголь марки ДГ, фракции 13–100 и 50–200 мм. Навалом или в мешках.",
     items: [
-      { id: "coal-dg-13-100", uk: "Вугілля ДГ 13–100", ru: "Уголь ДГ 13–100", price: 14000, unitUk: "т", unitRu: "т" },
-      { id: "coal-dg-50-200", uk: "Вугілля ДГ 50–200", ru: "Уголь ДГ 50–200", price: 14000, unitUk: "т", unitRu: "т" },
+      { id: "coal-dg-13-100", img: "/img/coal-dg-13-100.webp", uk: "Вугілля ДГ 13–100", ru: "Уголь ДГ 13–100", price: 14000, unitUk: "т", unitRu: "т" },
+      { id: "coal-dg-50-200", img: "/img/coal-dg-50-200.webp", uk: "Вугілля ДГ 50–200", ru: "Уголь ДГ 50–200", price: 14000, unitUk: "т", unitRu: "т" },
     ],
   },
   {
@@ -66,6 +66,16 @@ export const catalog = [
     items: [
       { id: "sand-river", uk: "Річковий митий пісок", ru: "Речной мытый песок", price: null, unitUk: "т", unitRu: "т" },
       { id: "sand-quarry", uk: "Карʼєрний жовтий пісок", ru: "Карьерный жёлтый песок", price: null, unitUk: "т", unitRu: "т" },
+    ],
+  },
+  {
+    id: "gravel", icon: "🪨",
+    uk: "Щебінь і відсів", ru: "Щебень и отсев",
+    noteUk: "Для бетону, доріжок, підсипки та благоустрою. Ціну уточнюйте за телефоном.",
+    noteRu: "Для бетона, дорожек, подсыпки и благоустройства. Цену уточняйте по телефону.",
+    items: [
+      { id: "gravel", uk: "Щебінь", ru: "Щебень", price: null, unitUk: "т", unitRu: "т" },
+      { id: "screenings", uk: "Відсів", ru: "Отсев", price: null, unitUk: "т", unitRu: "т" },
     ],
   },
 ];

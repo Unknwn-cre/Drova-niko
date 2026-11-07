@@ -341,3 +341,4 @@ dialog.sheet::backdrop{background:rgba(31,26,20,.55);backdrop-filter:blur(3px)}
   .hero-photo{width:150%;margin-left:-18%}
   .hero-art .price-bubble{left:-14%}
 }
+.item-img.cat-gravel,.pick-img.cat-gravel{background:linear-gradient(135deg,#cfcac3,#8f8981)}
