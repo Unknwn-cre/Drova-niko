@@ -1,7 +1,6 @@
 // Cloudflare Worker: отдаёт статику из ./public и принимает заявки POST /api/order → Telegram.
 // Секреты (wrangler secret put ...): TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 
-const WOOD = { oak: "Дуб", ash: "Ясен", hornbeam: "Граб", acacia: "Акація", fruit: "Фруктові", mix: "Мікс" };
 const clip = (v, n) => String(v ?? "").trim().slice(0, n);
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json; charset=utf-8" } });
@@ -15,10 +14,10 @@ async function handleOrder(request, env) {
   if (phone.replace(/\D/g, "").length < 10) return json({ ok: false, error: "phone" }, 422);
 
   const lines = [
-    "🪵 <b>Нова заявка на дрова</b>",
+    "🪵 <b>Нова заявка з сайту</b>",
     `📞 ${esc(phone)}`,
     d.name && `👤 ${esc(clip(d.name, 60))}`,
-    `🌳 ${esc(WOOD[d.wood] || clip(d.wood, 20))} × ${esc(clip(d.volume, 4))} м³`,
+    `📦 ${esc(clip(d.itemName || d.item, 60))}${d.volume ? " — " + esc(clip(d.volume, 20)) : ""}`,
     d.estimate && `💰 ≈ ${esc(clip(d.estimate, 10))} грн (калькулятор)`,
     d.address && `📍 ${esc(clip(d.address, 120))}`,
     d.comment && `💬 ${esc(clip(d.comment, 500))}`,

@@ -3,8 +3,8 @@
 Статический лендинг (UA `/` + RU `/ru/`) на Cloudflare Workers Static Assets + Worker для заявок → Telegram.
 
 ## Что поменять перед запуском
-Всё в `scripts/site.config.mjs`: телефон, Telegram, Viber, домен, цены, районы. Затем `npm run build`.
-Тексты (отзывы, цифры доверия «2 400+ доставок» и т.п.) — в `scripts/build.mjs`. **Отзывы — примеры, замените на реальные.**
+Всё в `scripts/site.config.mjs`: телефон, Telegram, Viber, домен, каталог и цены (price: null → «ціна за телефоном»), районы. Затем `npm run build`.
+Тексты и отзывы — в `scripts/build.mjs` (блок отзывов появляется, когда массив `reviews` не пустой).
 
 ## Заявки в Telegram
 ```

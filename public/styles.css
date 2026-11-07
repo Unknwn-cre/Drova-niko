@@ -175,3 +175,16 @@ details p{color:var(--muted)}
   .mob-bar .btn{padding:14px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+
+/* catalog */
+.cat-ico{font-size:40px;line-height:1;margin-bottom:12px}
+.items{list-style:none;padding:0;margin:0 0 18px;border-top:1px dashed var(--line)}
+.items li{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line);font-weight:600;font-size:15px}
+.items li b{white-space:nowrap;font-size:17px}
+.items li small{color:var(--muted);font-weight:600;font-size:13px}
+.tag-in{background:var(--fire);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;margin-right:6px}
+.items li span:not(.tag-in){flex:1}
+.calc select:disabled{opacity:.5}
+.cta-card{background:var(--dark);color:#fff;border-color:var(--dark)}
+.cta-card p{color:#cbbfb0}
+.cta-card .big-phone{font-size:26px;margin:4px 0 14px}

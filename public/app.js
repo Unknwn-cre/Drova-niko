@@ -8,7 +8,9 @@
   const cWood = $("#cWood"), cVol = $("#cVol"), cLen = $("#cLen"), cOut = $("#cVolOut");
   let estimate = 0;
   function calc() {
-    const p = byId(cWood.value), v = +cVol.value, extra = +cLen.value;
+    const p = byId(cWood.value), v = +cVol.value;
+    cLen.disabled = p.noLength;
+    const extra = p.noLength ? 0 : +cLen.value;
     const base = (p.price + extra) * v;
     const del = v >= S.freeFrom ? 0 : S.fee;
     const disc = base * 0.05;
@@ -25,10 +27,15 @@
 
   const fWood = $("#fWood"), fVol = $("#fVol"), fEst = $("#fEst");
   $("#calcGo").addEventListener("click", () => {
-    fWood.value = cWood.value; fVol.value = cVol.value; fEst.value = Math.round(estimate);
+    fWood.value = cWood.value; fVol.value = cVol.value + " м³"; fEst.value = Math.round(estimate);
   });
   document.querySelectorAll(".js-pick").forEach((a) =>
-    a.addEventListener("click", () => { fWood.value = a.dataset.wood; cWood.value = a.dataset.wood; calc(); }));
+    a.addEventListener("click", () => {
+      fWood.value = a.dataset.item; fEst.value = "";
+      const it = S.items[a.dataset.item]; fVol.value = it && it.calc ? "4 м³" : "";
+      fVol.placeholder = it ? it.unit : "";
+    }));
+  fWood.addEventListener("change", () => { fEst.value = ""; });
 
   // ---- order form
   const form = $("#orderForm"), msg = $("#formMsg");
@@ -43,6 +50,7 @@
     const data = Object.fromEntries(new FormData(form));
     if (!data.estimate) data.estimate = "";
     data.page = location.pathname;
+    data.itemName = (S.items[data.item] || {}).name || data.item;
     try {
       const r = await fetch("/api/order", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(data) });
       if (!r.ok) throw new Error(r.status);
