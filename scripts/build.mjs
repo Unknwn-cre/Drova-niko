@@ -1,0 +1,347 @@
+// Генерирует public/index.html (укр.) и public/ru/index.html (рус.) из одного шаблона.
+import { writeFileSync, mkdirSync } from "node:fs";
+import { site, products, areas, deliveryFreeFrom, deliveryFee } from "./site.config.mjs";
+
+const T = {
+  uk: {
+    lang: "uk", path: "/", other: "/ru/", otherLabel: "RU",
+    title: "Дрова Миколаїв — купити колоті дрова з доставкою | Дуб, ясен, граб",
+    desc: `Колоті дрова в Миколаєві: дуб, ясен, граб, акація від ${products[0].price - 0} грн/скл.м³. Чесний обʼєм, доставка в день замовлення, безкоштовно від ${deliveryFreeFrom} м³. Оплата після розвантаження.`,
+    nav: ["Ціни", "Калькулятор", "Доставка", "Відгуки", "Питання"],
+    call: "Подзвонити",
+    heroBadge: "Сезон 2026/27 · дрова в наявності",
+    heroH1: "Сухі колоті дрова<br>у Миколаєві з доставкою <span>сьогодні</span>",
+    heroSub: `Дуб, ясен, граб, акація. Чесний складометр — міряємо при вас. Безкоштовна доставка від ${deliveryFreeFrom} м³, оплата після розвантаження.`,
+    heroCta: "Розрахувати вартість", heroCta2: "Замовити дзвінок",
+    heroPoints: ["Доставка за 2–4 години", "Оплата по факту", "Вологість до 25%"],
+    trust: [["2 400+", "доставок у Миколаєві"], ["4 год", "середній час доставки"], ["0 грн", "передоплата"], ["100%", "чесний обʼєм"]],
+    pricesH: "Ціни на дрова в Миколаєві", pricesSub: "Ціна за 1 складометр колотих дров, поліно 30–40 см. Ціни актуальні на листопад 2026.",
+    from: "від", unit: "грн/скл.м³", heat: "Тепловіддача", order: "Замовити",
+    calcH: "Калькулятор вартості", calcSub: "Порахуйте ціну за 10 секунд — і отримайте знижку 5% при замовленні через сайт.",
+    calcWood: "Порода дерева", calcVol: "Обʼєм, складометрів", calcLen: "Довжина поліна", calcLenOpts: ["30–40 см (стандарт)", "до 25 см (для каміна, +100 грн/м³)", "50 см (+0 грн)"],
+    calcTotal: "Разом з доставкою", calcDelivery: "Доставка", calcFree: "безкоштовно", calcDisc: "Знижка за сайт −5%", calcBtn: "Оформити за цією ціною",
+    whyH: "Чому замовляють у нас", why: [
+      ["📏", "Чесний складометр", "Укладаємо дрова рівно в кузові та міряємо рулеткою при вас. Не сподобалось — не платите."],
+      ["🔥", "Сухі дрова", "Вологість до 25% — дрова горять, а не шиплять. Покажемо вологомір на місці."],
+      ["🚚", "Доставка сьогодні", "Власний транспорт: ГАЗель, ЗІЛ, КАМАЗ. Привеземо в день замовлення по всьому Миколаєву."],
+      ["💳", "Оплата по факту", "Жодних передоплат. Готівка або переказ на картку після розвантаження."],
+      ["🪓", "Будь-яка довжина", "Поліно 25, 30–40 або 50 см під вашу піч, котел чи камін."],
+      ["🧾", "Документи", "Працюємо з ОСББ, школами та бізнесом — рахунок, накладна, договір."],
+    ],
+    stepsH: "Як ми працюємо", steps: [
+      ["Заявка", "Дзвінок, Viber/Telegram або форма на сайті"],
+      ["Підтвердження", "Уточнюємо породу, обʼєм і час за 5 хвилин"],
+      ["Доставка", "Привозимо та розвантажуємо в зручне місце"],
+      ["Оплата", "Міряєте обʼєм, перевіряєте якість — і лише потім платите"],
+    ],
+    delivH: "Доставка дров по Миколаєву та області", delivSub: `Безкоштовно від ${deliveryFreeFrom} складометрів по місту. Менші обʼєми — ${deliveryFee} грн. По області — розрахуємо за телефоном.`,
+    delivNote: "Доставляємо у всі райони міста та передмістя:",
+    revH: "Відгуки клієнтів",
+    reviews: [
+      ["Олександр, Корабельний район", "Замовляв 5 кубів дуба. Привезли того ж дня, склали рівно, поміряли при мені — все чесно. Дрова сухі, котел гріє відмінно."],
+      ["Ірина, Матвіївка", "Брали фруктові для каміна і мангалу. Дуже приємний запах, мало золи. Водій допоміг занести у двір."],
+      ["Сергій, Інгульський район", "Порівнював ціни в кількох місцях — тут вийшло дешевше і без передоплати. Беру вже другий сезон."],
+    ],
+    faqH: "Часті питання", faq: [
+      ["Що таке складометр і чим він відрізняється від насипного?", "Складометр — це 1 м³ рівно складених полін. Насипний метр — дрова, накидані навалом, у ньому до 30% повітря. Ми продаємо саме складометри, тому ви отримуєте більше деревини за ті ж гроші."],
+      ["Наскільки сухі дрова?", "Вологість наших дров — до 25%. Це оптимально для котлів, печей і камінів: дрова легко розпалюються та дають максимум тепла."],
+      ["Як швидко привезете?", "Зазвичай за 2–4 години після дзвінка в межах Миколаєва. Можна домовитись на конкретну дату і час."],
+      ["Чи потрібна передоплата?", "Ні. Оплата готівкою або переказом після розвантаження та перевірки обʼєму."],
+      ["Яка порода найкраща для котла?", "Дуб, граб і акація — найвища тепловіддача та найдовше горіння. Для економії — мікс твердих порід."],
+      ["Чи можна замовити 1–2 кубометри?", `Так, від 1 складометра. Доставка малих обʼємів — ${deliveryFee} грн, від ${deliveryFreeFrom} м³ — безкоштовно.`],
+    ],
+    formH: "Замовте дрова зараз", formSub: "Залиште номер — передзвонимо за 5 хвилин, уточнимо деталі та час доставки.",
+    fName: "Ваше імʼя", fPhone: "Телефон", fWood: "Порода", fVol: "Обʼєм, м³", fAddr: "Адреса або район", fMsg: "Коментар (необовʼязково)",
+    fBtn: "Замовити дрова", fPolicy: "Натискаючи кнопку, ви погоджуєтесь на обробку даних для звʼязку з вами.",
+    fOk: "Дякуємо! Заявку прийнято — передзвонимо протягом 5 хвилин.", fErr: "Не вдалося надіслати. Подзвоніть нам, будь ласка:",
+    orWrite: "або напишіть", footer: "Продаж колотих дров з доставкою в Миколаєві та області.", hoursL: "Працюємо",
+    mobCall: "Подзвонити", mobOrder: "Замовити",
+  },
+  ru: {
+    lang: "ru", path: "/ru/", other: "/", otherLabel: "UA",
+    title: "Дрова Николаев — купить колотые дрова с доставкой | Дуб, ясень, граб",
+    desc: `Колотые дрова в Николаеве: дуб, ясень, граб, акация от ${products[0].price} грн/скл.м³. Честный объём, доставка в день заказа, бесплатно от ${deliveryFreeFrom} м³. Оплата после разгрузки.`,
+    nav: ["Цены", "Калькулятор", "Доставка", "Отзывы", "Вопросы"],
+    call: "Позвонить",
+    heroBadge: "Сезон 2026/27 · дрова в наличии",
+    heroH1: "Сухие колотые дрова<br>в Николаеве с доставкой <span>сегодня</span>",
+    heroSub: `Дуб, ясень, граб, акация. Честный складометр — меряем при вас. Бесплатная доставка от ${deliveryFreeFrom} м³, оплата после разгрузки.`,
+    heroCta: "Рассчитать стоимость", heroCta2: "Заказать звонок",
+    heroPoints: ["Доставка за 2–4 часа", "Оплата по факту", "Влажность до 25%"],
+    trust: [["2 400+", "доставок в Николаеве"], ["4 ч", "среднее время доставки"], ["0 грн", "предоплата"], ["100%", "честный объём"]],
+    pricesH: "Цены на дрова в Николаеве", pricesSub: "Цена за 1 складометр колотых дров, полено 30–40 см. Цены актуальны на ноябрь 2026.",
+    from: "от", unit: "грн/скл.м³", heat: "Теплоотдача", order: "Заказать",
+    calcH: "Калькулятор стоимости", calcSub: "Посчитайте цену за 10 секунд — и получите скидку 5% при заказе через сайт.",
+    calcWood: "Порода дерева", calcVol: "Объём, складометров", calcLen: "Длина полена", calcLenOpts: ["30–40 см (стандарт)", "до 25 см (для камина, +100 грн/м³)", "50 см (+0 грн)"],
+    calcTotal: "Итого с доставкой", calcDelivery: "Доставка", calcFree: "бесплатно", calcDisc: "Скидка за сайт −5%", calcBtn: "Оформить по этой цене",
+    whyH: "Почему заказывают у нас", why: [
+      ["📏", "Честный складометр", "Укладываем дрова ровно в кузове и меряем рулеткой при вас. Не понравилось — не платите."],
+      ["🔥", "Сухие дрова", "Влажность до 25% — дрова горят, а не шипят. Покажем влагомер на месте."],
+      ["🚚", "Доставка сегодня", "Свой транспорт: ГАЗель, ЗИЛ, КАМАЗ. Привезём в день заказа по всему Николаеву."],
+      ["💳", "Оплата по факту", "Никаких предоплат. Наличные или перевод на карту после разгрузки."],
+      ["🪓", "Любая длина", "Полено 25, 30–40 или 50 см под вашу печь, котёл или камин."],
+      ["🧾", "Документы", "Работаем с ОСМД, школами и бизнесом — счёт, накладная, договор."],
+    ],
+    stepsH: "Как мы работаем", steps: [
+      ["Заявка", "Звонок, Viber/Telegram или форма на сайте"],
+      ["Подтверждение", "Уточняем породу, объём и время за 5 минут"],
+      ["Доставка", "Привозим и разгружаем в удобное место"],
+      ["Оплата", "Меряете объём, проверяете качество — и только потом платите"],
+    ],
+    delivH: "Доставка дров по Николаеву и области", delivSub: `Бесплатно от ${deliveryFreeFrom} складометров по городу. Меньшие объёмы — ${deliveryFee} грн. По области — рассчитаем по телефону.`,
+    delivNote: "Доставляем во все районы города и пригород:",
+    revH: "Отзывы клиентов",
+    reviews: [
+      ["Александр, Корабельный район", "Заказывал 5 кубов дуба. Привезли в тот же день, сложили ровно, померили при мне — всё честно. Дрова сухие, котёл греет отлично."],
+      ["Ирина, Матвеевка", "Брали фруктовые для камина и мангала. Очень приятный запах, мало золы. Водитель помог занести во двор."],
+      ["Сергей, Ингульский район", "Сравнивал цены в нескольких местах — здесь вышло дешевле и без предоплаты. Беру уже второй сезон."],
+    ],
+    faqH: "Частые вопросы", faq: [
+      ["Что такое складометр и чем он отличается от насыпного?", "Складометр — это 1 м³ ровно сложенных поленьев. Насыпной метр — дрова навалом, в нём до 30% воздуха. Мы продаём именно складометры, поэтому вы получаете больше древесины за те же деньги."],
+      ["Насколько сухие дрова?", "Влажность наших дров — до 25%. Это оптимально для котлов, печей и каминов: дрова легко разжигаются и дают максимум тепла."],
+      ["Как быстро привезёте?", "Обычно за 2–4 часа после звонка в пределах Николаева. Можно договориться на конкретную дату и время."],
+      ["Нужна ли предоплата?", "Нет. Оплата наличными или переводом после разгрузки и проверки объёма."],
+      ["Какая порода лучше для котла?", "Дуб, граб и акация — самая высокая теплоотдача и самое долгое горение. Для экономии — микс твёрдых пород."],
+      ["Можно заказать 1–2 кубометра?", `Да, от 1 складометра. Доставка малых объёмов — ${deliveryFee} грн, от ${deliveryFreeFrom} м³ — бесплатно.`],
+    ],
+    formH: "Закажите дрова сейчас", formSub: "Оставьте номер — перезвоним за 5 минут, уточним детали и время доставки.",
+    fName: "Ваше имя", fPhone: "Телефон", fWood: "Порода", fVol: "Объём, м³", fAddr: "Адрес или район", fMsg: "Комментарий (необязательно)",
+    fBtn: "Заказать дрова", fPolicy: "Нажимая кнопку, вы соглашаетесь на обработку данных для связи с вами.",
+    fOk: "Спасибо! Заявка принята — перезвоним в течение 5 минут.", fErr: "Не удалось отправить. Позвоните нам, пожалуйста:",
+    orWrite: "или напишите", footer: "Продажа колотых дров с доставкой в Николаеве и области.", hoursL: "Работаем",
+    mobCall: "Позвонить", mobOrder: "Заказать",
+  },
+};
+
+const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+const fmt = (n) => n.toLocaleString("uk-UA").replace(/ /g, " ");
+
+function page(L) {
+  const t = T[L];
+  const name = (p) => p[L];
+  const desc = (p) => (L === "uk" ? p.descUk : p.descRu);
+  const ids = ["prices", "calc", "delivery", "reviews", "faq"];
+  const canonical = site.domain + t.path;
+  const hours = L === "uk" ? site.hours : site.hoursRu;
+  const minPrice = Math.min(...products.map((p) => p.price));
+
+  const ld = [
+    {
+      "@context": "https://schema.org", "@type": "LocalBusiness", name: site.brand,
+      description: t.desc, url: canonical, telephone: site.phone, priceRange: `${minPrice}–${Math.max(...products.map((p) => p.price))} UAH`,
+      address: { "@type": "PostalAddress", addressLocality: L === "uk" ? "Миколаїв" : "Николаев", addressRegion: L === "uk" ? "Миколаївська область" : "Николаевская область", addressCountry: "UA" },
+      geo: { "@type": "GeoCoordinates", latitude: site.geo.lat, longitude: site.geo.lng },
+      areaServed: { "@type": "City", name: L === "uk" ? "Миколаїв" : "Николаев" },
+      openingHoursSpecification: { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], opens: "08:00", closes: "20:00" },
+      makesOffer: products.map((p) => ({ "@type": "Offer", priceCurrency: "UAH", price: p.price, itemOffered: { "@type": "Product", name: name(p) } })),
+    },
+    { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: t.faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) },
+  ];
+
+  const productCards = products.map((p) => `
+        <article class="card product" data-id="${p.id}">
+          ${p.tag ? `<span class="tag">${esc(p.tag[L])}</span>` : ""}
+          <div class="log log-${p.id}" aria-hidden="true"></div>
+          <h3>${esc(name(p))}</h3>
+          <p>${esc(desc(p))}</p>
+          <div class="heat" aria-label="${t.heat} ${p.burn}/5"><span>${t.heat}</span>${"<i class=on></i>".repeat(p.burn)}${"<i></i>".repeat(5 - p.burn)}</div>
+          <div class="price"><small>${t.from}</small> <b>${fmt(p.price)}</b> <small>${t.unit}</small></div>
+          <a class="btn btn-ghost js-pick" href="#order" data-wood="${p.id}">${t.order}</a>
+        </article>`).join("");
+
+  const woodOptions = products.map((p) => `<option value="${p.id}">${esc(name(p))} — ${t.from} ${fmt(p.price)} грн</option>`).join("");
+
+  return `<!doctype html>
+<html lang="${t.lang}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${esc(t.title)}</title>
+<meta name="description" content="${esc(t.desc)}">
+<link rel="canonical" href="${canonical}">
+<link rel="alternate" hreflang="uk" href="${site.domain}/">
+<link rel="alternate" hreflang="ru" href="${site.domain}/ru/">
+<link rel="alternate" hreflang="x-default" href="${site.domain}/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="${esc(t.title)}">
+<meta property="og:description" content="${esc(t.desc)}">
+<meta property="og:url" content="${canonical}">
+<meta property="og:image" content="${site.domain}/og.png">
+<meta property="og:locale" content="${L === "uk" ? "uk_UA" : "ru_UA"}">
+<meta name="theme-color" content="#1f1a14">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">${JSON.stringify(ld)}</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="${t.path}"><img src="/favicon.svg" alt="" width="32" height="32"><span>${site.brand}</span></a>
+    <nav class="nav">${t.nav.map((n, i) => `<a href="#${ids[i]}">${n}</a>`).join("")}</nav>
+    <div class="top-actions">
+      <a class="lang" href="${t.other}" hreflang="${t.other === "/" ? "uk" : "ru"}">${t.otherLabel}</a>
+      <a class="phone" href="tel:${site.phone}">${site.phoneHuman}</a>
+      <a class="btn btn-sm" href="tel:${site.phone}">${t.call}</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div class="hero-text">
+        <span class="badge">● ${t.heroBadge}</span>
+        <h1>${t.heroH1}</h1>
+        <p class="lead">${t.heroSub}</p>
+        <div class="cta-row">
+          <a class="btn btn-lg" href="#calc">${t.heroCta}</a>
+          <a class="btn btn-lg btn-light" href="#order">${t.heroCta2}</a>
+        </div>
+        <ul class="points">${t.heroPoints.map((p) => `<li>${p}</li>`).join("")}</ul>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="stack">${Array.from({ length: 15 }, () => "<span></span>").join("")}</div>
+        <div class="flame"></div>
+        <div class="price-bubble">${t.from} <b>${fmt(minPrice)}</b> грн/м³</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust">
+    <div class="wrap trust-in">${t.trust.map(([a, b]) => `<div><b>${a}</b><span>${b}</span></div>`).join("")}</div>
+  </section>
+
+  <section id="prices" class="sec">
+    <div class="wrap">
+      <h2>${t.pricesH}</h2>
+      <p class="sub">${t.pricesSub}</p>
+      <div class="grid products">${productCards}
+      </div>
+    </div>
+  </section>
+
+  <section id="calc" class="sec sec-dark">
+    <div class="wrap calc-in">
+      <div>
+        <h2>${t.calcH}</h2>
+        <p class="sub">${t.calcSub}</p>
+        <form class="calc" id="calcForm" onsubmit="return false">
+          <label>${t.calcWood}<select id="cWood">${woodOptions}</select></label>
+          <label>${t.calcVol}: <output id="cVolOut">4</output>
+            <input id="cVol" type="range" min="1" max="20" step="1" value="4"></label>
+          <label>${t.calcLen}<select id="cLen">${t.calcLenOpts.map((o, i) => `<option value="${[0, 100, 0][i]}">${o}</option>`).join("")}</select></label>
+        </form>
+      </div>
+      <div class="calc-res card">
+        <div class="row"><span id="rWood"></span><b id="rBase"></b></div>
+        <div class="row"><span>${t.calcDelivery}</span><b id="rDel"></b></div>
+        <div class="row disc"><span>${t.calcDisc}</span><b id="rDisc"></b></div>
+        <div class="total"><span>${t.calcTotal}</span><b id="rTotal"></b></div>
+        <a class="btn btn-lg btn-block" href="#order" id="calcGo">${t.calcBtn}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2>${t.whyH}</h2>
+      <div class="grid why">${t.why.map(([i, h, p]) => `<div class="card"><div class="ico">${i}</div><h3>${h}</h3><p>${p}</p></div>`).join("")}</div>
+    </div>
+  </section>
+
+  <section class="sec sec-alt">
+    <div class="wrap">
+      <h2>${t.stepsH}</h2>
+      <ol class="steps">${t.steps.map(([h, p]) => `<li><h3>${h}</h3><p>${p}</p></li>`).join("")}</ol>
+    </div>
+  </section>
+
+  <section id="delivery" class="sec">
+    <div class="wrap">
+      <h2>${t.delivH}</h2>
+      <p class="sub">${t.delivSub}</p>
+      <p>${t.delivNote}</p>
+      <ul class="areas">${areas[L].map((a) => `<li>${a}</li>`).join("")}</ul>
+    </div>
+  </section>
+
+  <!-- TODO: замінити на реальні відгуки клієнтів (імʼя, район, текст). Це приклади. -->
+  <section id="reviews" class="sec sec-alt">
+    <div class="wrap">
+      <h2>${t.revH}</h2>
+      <div class="grid reviews">${t.reviews.map(([n, r]) => `<figure class="card"><div class="stars">★★★★★</div><blockquote>${r}</blockquote><figcaption>${n}</figcaption></figure>`).join("")}</div>
+    </div>
+  </section>
+
+  <section id="faq" class="sec">
+    <div class="wrap narrow">
+      <h2>${t.faqH}</h2>
+      ${t.faq.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join("\n      ")}
+    </div>
+  </section>
+
+  <section id="order" class="sec sec-dark">
+    <div class="wrap order-in">
+      <div>
+        <h2>${t.formH}</h2>
+        <p class="sub">${t.formSub}</p>
+        <a class="big-phone" href="tel:${site.phone}">${site.phoneHuman}</a>
+        <p class="muted">${t.orWrite}:</p>
+        <div class="messengers">
+          <a class="btn btn-viber" href="viber://chat?number=%2B${site.viberPhone}">Viber</a>
+          <a class="btn btn-tg" href="https://t.me/${site.telegram}">Telegram</a>
+        </div>
+      </div>
+      <form class="card order" id="orderForm" novalidate>
+        <label>${t.fName}<input name="name" autocomplete="name" maxlength="60"></label>
+        <label>${t.fPhone} *<input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+380" maxlength="20"></label>
+        <div class="two">
+          <label>${t.fWood}<select name="wood" id="fWood">${woodOptions}</select></label>
+          <label>${t.fVol}<input name="volume" id="fVol" type="number" min="1" max="100" value="4"></label>
+        </div>
+        <label>${t.fAddr}<input name="address" autocomplete="street-address" maxlength="120"></label>
+        <label>${t.fMsg}<textarea name="comment" rows="2" maxlength="500"></textarea></label>
+        <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="lang" value="${L}">
+        <input type="hidden" name="estimate" id="fEst">
+        <button class="btn btn-lg btn-block" type="submit">${t.fBtn}</button>
+        <p class="policy">${t.fPolicy}</p>
+        <p class="form-msg" id="formMsg" role="status" hidden></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div><b>${site.brand}</b><p>${t.footer}</p></div>
+    <div><p>${t.hoursL}: ${hours}</p><p><a href="tel:${site.phone}">${site.phoneHuman}</a></p></div>
+    <div><p>© ${new Date().getFullYear()} ${site.brand}</p></div>
+  </div>
+</footer>
+
+<div class="mob-bar">
+  <a class="btn btn-light" href="tel:${site.phone}">📞 ${t.mobCall}</a>
+  <a class="btn" href="#order">${t.mobOrder}</a>
+</div>
+
+<script>window.SITE=${JSON.stringify({ lang: L, products: products.map((p) => ({ id: p.id, name: name(p), price: p.price })), freeFrom: deliveryFreeFrom, fee: deliveryFee, ok: t.fOk, err: t.fErr, phone: site.phoneHuman, tel: site.phone, free: t.calcFree })};</script>
+<script src="/app.js" defer></script>
+</body>
+</html>
+`;
+}
+
+mkdirSync("public/ru", { recursive: true });
+writeFileSync("public/index.html", page("uk"));
+writeFileSync("public/ru/index.html", page("ru"));
+writeFileSync("public/sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${["/", "/ru/"].map((p) => `  <url><loc>${site.domain}${p}</loc><changefreq>weekly</changefreq><xhtml:link rel="alternate" hreflang="uk" href="${site.domain}/"/><xhtml:link rel="alternate" hreflang="ru" href="${site.domain}/ru/"/></url>`).join("\n")}
+</urlset>
+`);
+writeFileSync("public/robots.txt", `User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${site.domain}/sitemap.xml\n`);
+console.log("built: public/index.html, public/ru/index.html, sitemap.xml, robots.txt");
