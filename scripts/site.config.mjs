@@ -65,7 +65,7 @@ export const catalog = [
     noteRu: "Для строительства, стяжки, кладки и благоустройства.",
     items: [
       { id: "sand-river", exact: true, img: "/img/sand-river.webp", uk: "Річковий митий пісок", ru: "Речной мытый песок", price: 1000, unitUk: "т", unitRu: "т" },
-      { id: "sand-river-sifted", exact: true, img: "/img/sand-river.webp", uk: "Річковий сіяний пісок", ru: "Речной сеяный песок", price: 750, unitUk: "т", unitRu: "т" },
+      { id: "sand-river-sifted", exact: true, img: "/img/sand-river-sifted.webp", uk: "Річковий сіяний пісок", ru: "Речной сеяный песок", price: 750, unitUk: "т", unitRu: "т" },
       { id: "sand-quarry", exact: true, img: "/img/sand-quarry.webp", uk: "Карʼєрний жовтий пісок", ru: "Карьерный жёлтый песок", price: 700, unitUk: "т", unitRu: "т" },
     ],
   },
@@ -75,11 +75,11 @@ export const catalog = [
     noteUk: "Щебінь фракцій 5–10, 5–20, 20–40, 40–70 мм — для бетону, доріжок, підсипки та благоустрою.",
     noteRu: "Щебень фракций 5–10, 5–20, 20–40, 40–70 мм — для бетона, дорожек, подсыпки и благоустройства.",
     items: [
-      { id: "gravel-5-10", exact: true, uk: "Щебінь 5–10", ru: "Щебень 5–10", price: 1300, unitUk: "т", unitRu: "т" },
-      { id: "gravel-5-20", exact: true, uk: "Щебінь 5–20", ru: "Щебень 5–20", price: 1200, unitUk: "т", unitRu: "т" },
-      { id: "gravel-20-40", exact: true, uk: "Щебінь 20–40", ru: "Щебень 20–40", price: 1200, unitUk: "т", unitRu: "т" },
-      { id: "gravel-40-70", exact: true, uk: "Щебінь 40–70", ru: "Щебень 40–70", price: 1200, unitUk: "т", unitRu: "т" },
-      { id: "screenings", exact: true, uk: "Відсів щебню", ru: "Отсев щебня", price: 1150, unitUk: "т", unitRu: "т" },
+      { id: "gravel-5-10", exact: true, img: "/img/gravel-5-10.webp", uk: "Щебінь 5–10", ru: "Щебень 5–10", price: 1300, unitUk: "т", unitRu: "т" },
+      { id: "gravel-5-20", exact: true, img: "/img/gravel-5-20.webp", uk: "Щебінь 5–20", ru: "Щебень 5–20", price: 1200, unitUk: "т", unitRu: "т" },
+      { id: "gravel-20-40", exact: true, img: "/img/gravel-20-40.webp", uk: "Щебінь 20–40", ru: "Щебень 20–40", price: 1200, unitUk: "т", unitRu: "т" },
+      { id: "gravel-40-70", exact: true, img: "/img/gravel-40-70.webp", uk: "Щебінь 40–70", ru: "Щебень 40–70", price: 1200, unitUk: "т", unitRu: "т" },
+      { id: "screenings", exact: true, img: "/img/screenings.webp", uk: "Відсів щебню", ru: "Отсев щебня", price: 1150, unitUk: "т", unitRu: "т" },
     ],
   },
 ];
