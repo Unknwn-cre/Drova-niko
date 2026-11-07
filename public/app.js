@@ -1,34 +1,8 @@
 (() => {
   const S = window.SITE;
   const $ = (s) => document.querySelector(s);
-  const money = (n) => Math.round(n).toLocaleString("uk-UA") + " грн";
-  const byId = (id) => S.products.find((p) => p.id === id) || S.products[0];
-
-  // ---- calculator
-  const cWood = $("#cWood"), cVol = $("#cVol"), cLen = $("#cLen"), cOut = $("#cVolOut");
-  let estimate = 0;
-  function calc() {
-    const p = byId(cWood.value), v = +cVol.value;
-    cLen.disabled = p.noLength;
-    const extra = p.noLength ? 0 : +cLen.value;
-    const base = (p.price + extra) * v;
-    const del = v >= S.freeFrom ? 0 : S.fee;
-    const disc = base * 0.05;
-    estimate = base + del - disc;
-    cOut.textContent = v;
-    $("#rWood").textContent = `${p.name} × ${v} м³`;
-    $("#rBase").textContent = money(base);
-    $("#rDel").textContent = del ? money(del) : S.free;
-    $("#rDisc").textContent = "−" + money(disc);
-    $("#rTotal").textContent = money(estimate);
-  }
-  [cWood, cVol, cLen].forEach((el) => el.addEventListener("input", calc));
-  calc();
 
   const fWood = $("#fWood"), fVol = $("#fVol"), fEst = $("#fEst");
-  $("#calcGo").addEventListener("click", () => {
-    fWood.value = cWood.value; fVol.value = cVol.value + " м³"; fEst.value = Math.round(estimate);
-  });
   document.querySelectorAll(".js-pick").forEach((a) =>
     a.addEventListener("click", () => {
       fWood.value = a.dataset.item; fEst.value = "";
