@@ -40,10 +40,11 @@
         <h1>Дрова та паливо<br>у Миколаєві з доставкою <span>сьогодні</span></h1>
         <p class="lead">Колоті, пиляні та метрові дрова, паливні брикети, пелети, вугілля ДГ і пісок. Чесний обʼєм, безкоштовна доставка дров, оплата після розвантаження.</p>
         <div class="cta-row">
-          <a class="btn btn-lg" href="#prices">Дивитися ціни</a>
+          <a class="btn btn-lg" href="#prices">Обрати товар</a>
           <a class="btn btn-lg btn-light" href="#order">Замовити дзвінок</a>
         </div>
         <ul class="points"><li>Доставка за 2–4 години</li><li>Оплата по факту</li><li>Вологість до 25%</li></ul>
+        <p class="pay-note">🛒 Замовляйте на сайті — оплата при отриманні</p>
       </div>
       <div class="hero-art" aria-hidden="true">
         <div class="stack"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
@@ -56,116 +57,59 @@
   <section id="prices" class="sec">
     <div class="wrap">
       <h2>Каталог і ціни</h2>
+      <p class="pay-note">🛒 Замовляйте на сайті — оплата при отриманні</p>
       <p class="sub">Дрова, брикети, пелети, вугілля та пісок з доставкою по Миколаєву та області. Ціни вказані «від» — точну суму назвемо за телефоном, вона залежить від обʼєму та фасування. Ціну на пісок уточнюйте за телефоном.</p>
-      <div class="grid items-grid">
-        <article class="card item-card" id="item-split">
-          <div class="item-img"><img src="/img/split.webp" alt="Колоті дрова — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async"><span class="tag">Хіт</span></div>
-          <div class="item-body">
-            <small class="item-cat">Дрова для опалення</small>
-            <h3>Колоті дрова</h3>
-            <div class="price"><small>від</small> <b>3 500</b> <small>грн/скл.м³</small></div>
-            <a class="btn btn-ghost js-pick" href="#order" data-item="split">Замовити</a>
-          </div>
-        </article>
-        <article class="card item-card" id="item-sawn">
-          <div class="item-img"><img src="/img/sawn.webp" alt="Пиляні дрова — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async"></div>
-          <div class="item-body">
-            <small class="item-cat">Дрова для опалення</small>
-            <h3>Пиляні дрова</h3>
-            <div class="price"><small>від</small> <b>3 500</b> <small>грн/скл.м³</small></div>
-            <a class="btn btn-ghost js-pick" href="#order" data-item="sawn">Замовити</a>
-          </div>
-        </article>
-        <article class="card item-card" id="item-meter">
-          <div class="item-img"><img src="/img/meter.webp" alt="Метрові дрова — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async"></div>
-          <div class="item-body">
-            <small class="item-cat">Дрова для опалення</small>
-            <h3>Метрові дрова</h3>
-            <div class="price"><small>від</small> <b>3 500</b> <small>грн/скл.м³</small></div>
-            <a class="btn btn-ghost js-pick" href="#order" data-item="meter">Замовити</a>
-          </div>
-        </article>
-        <article class="card item-card" id="item-br-wood">
+      <div class="grid cats-grid">
+        <button type="button" class="card cat-card" data-cat="firewood" aria-haspopup="dialog">
+          <div class="item-img"><img src="/img/split.webp" alt="Колоті дрова — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async"></div>
+          <span class="item-body">
+            <span class="item-cat">3 позиції</span>
+            <span class="cat-title">Дрова для опалення</span>
+            <span class="cat-note">Колоті дрова · Пиляні дрова · Метрові дрова</span>
+            <span class="price"><small>від</small> <b>3 500</b> <small>грн/скл.м³</small></span>
+            <span class="btn btn-ghost">Обрати</span>
+          </span>
+        </button>
+        <button type="button" class="card cat-card" data-cat="briquettes" aria-haspopup="dialog">
           <div class="item-img"><img src="/img/br-wood.webp" alt="Деревні брикети — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async"></div>
-          <div class="item-body">
-            <small class="item-cat">Паливні брикети</small>
-            <h3>Деревні брикети</h3>
-            <div class="price"><small>від</small> <b>11 000</b> <small>грн/т</small></div>
-            <a class="btn btn-ghost js-pick" href="#order" data-item="br-wood">Замовити</a>
-          </div>
-        </article>
-        <article class="card item-card" id="item-br-peat">
-          <div class="item-img"><img src="/img/br-peat.webp" alt="Торфʼяні брикети — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async"></div>
-          <div class="item-body">
-            <small class="item-cat">Паливні брикети</small>
-            <h3>Торфʼяні брикети</h3>
-            <div class="price"><small>від</small> <b>11 000</b> <small>грн/т</small></div>
-            <a class="btn btn-ghost js-pick" href="#order" data-item="br-peat">Замовити</a>
-          </div>
-        </article>
-        <article class="card item-card" id="item-br-husk">
-          <div class="item-img"><img src="/img/br-husk.webp" alt="Брикети з лушпиння — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async"></div>
-          <div class="item-body">
-            <small class="item-cat">Паливні брикети</small>
-            <h3>Брикети з лушпиння</h3>
-            <div class="price"><small>від</small> <b>11 000</b> <small>грн/т</small></div>
-            <a class="btn btn-ghost js-pick" href="#order" data-item="br-husk">Замовити</a>
-          </div>
-        </article>
-        <article class="card item-card" id="item-pel-agro">
+          <span class="item-body">
+            <span class="item-cat">3 позиції</span>
+            <span class="cat-title">Паливні брикети</span>
+            <span class="cat-note">Деревні брикети · Торфʼяні брикети · Брикети з лушпиння</span>
+            <span class="price"><small>від</small> <b>11 000</b> <small>грн/т</small></span>
+            <span class="btn btn-ghost">Обрати</span>
+          </span>
+        </button>
+        <button type="button" class="card cat-card" data-cat="pellets" aria-haspopup="dialog">
           <div class="item-img"><img src="/img/pel-agro.webp" alt="Агропелети — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async"></div>
-          <div class="item-body">
-            <small class="item-cat">Паливні пелети</small>
-            <h3>Агропелети</h3>
-            <div class="price"><small>від</small> <b>11 000</b> <small>грн/т</small></div>
-            <a class="btn btn-ghost js-pick" href="#order" data-item="pel-agro">Замовити</a>
-          </div>
-        </article>
-        <article class="card item-card" id="item-pel-sun">
-          <div class="item-img"><img src="/img/pel-sun.webp" alt="Соняшникові пелети — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async"></div>
-          <div class="item-body">
-            <small class="item-cat">Паливні пелети</small>
-            <h3>Соняшникові пелети</h3>
-            <div class="price"><small>від</small> <b>11 000</b> <small>грн/т</small></div>
-            <a class="btn btn-ghost js-pick" href="#order" data-item="pel-sun">Замовити</a>
-          </div>
-        </article>
-        <article class="card item-card" id="item-coal-dg-bulk">
+          <span class="item-body">
+            <span class="item-cat">2 позиції</span>
+            <span class="cat-title">Паливні пелети</span>
+            <span class="cat-note">Агропелети · Соняшникові пелети</span>
+            <span class="price"><small>від</small> <b>11 000</b> <small>грн/т</small></span>
+            <span class="btn btn-ghost">Обрати</span>
+          </span>
+        </button>
+        <button type="button" class="card cat-card" data-cat="coal" aria-haspopup="dialog">
           <div class="item-img noimg cat-coal"><span aria-hidden="true">⚫</span></div>
-          <div class="item-body">
-            <small class="item-cat">Вугілля для опалення</small>
-            <h3>Вугілля ДГ навалом</h3>
-            <div class="price"><small>від</small> <b>14 000</b> <small>грн/т</small></div>
-            <a class="btn btn-ghost js-pick" href="#order" data-item="coal-dg-bulk">Замовити</a>
-          </div>
-        </article>
-        <article class="card item-card" id="item-coal-dg-bags">
-          <div class="item-img noimg cat-coal"><span aria-hidden="true">⚫</span></div>
-          <div class="item-body">
-            <small class="item-cat">Вугілля для опалення</small>
-            <h3>Вугілля ДГ у мішках</h3>
-            <div class="price"><small>від</small> <b>14 000</b> <small>грн/т</small></div>
-            <a class="btn btn-ghost js-pick" href="#order" data-item="coal-dg-bags">Замовити</a>
-          </div>
-        </article>
-        <article class="card item-card" id="item-sand-river">
+          <span class="item-body">
+            <span class="item-cat">2 позиції</span>
+            <span class="cat-title">Вугілля для опалення</span>
+            <span class="cat-note">Вугілля ДГ навалом · Вугілля ДГ у мішках</span>
+            <span class="price"><small>від</small> <b>14 000</b> <small>грн/т</small></span>
+            <span class="btn btn-ghost">Обрати</span>
+          </span>
+        </button>
+        <button type="button" class="card cat-card" data-cat="sand" aria-haspopup="dialog">
           <div class="item-img noimg cat-sand"><span aria-hidden="true">⛰️</span></div>
-          <div class="item-body">
-            <small class="item-cat">Пісок</small>
-            <h3>Річковий митий пісок</h3>
-            <div class="price"><span class="ask">ціна за телефоном</span></div>
-            <a class="btn btn-ghost js-pick" href="#order" data-item="sand-river">Замовити</a>
-          </div>
-        </article>
-        <article class="card item-card" id="item-sand-quarry">
-          <div class="item-img noimg cat-sand"><span aria-hidden="true">⛰️</span></div>
-          <div class="item-body">
-            <small class="item-cat">Пісок</small>
-            <h3>Карʼєрний жовтий пісок</h3>
-            <div class="price"><span class="ask">ціна за телефоном</span></div>
-            <a class="btn btn-ghost js-pick" href="#order" data-item="sand-quarry">Замовити</a>
-          </div>
-        </article>
+          <span class="item-body">
+            <span class="item-cat">2 позиції</span>
+            <span class="cat-title">Пісок</span>
+            <span class="cat-note">Річковий митий пісок · Карʼєрний жовтий пісок</span>
+            <span class="price"><span class="ask">ціна за телефоном</span></span>
+            <span class="btn btn-ghost">Обрати</span>
+          </span>
+        </button>
       </div>
       <div class="cta-card cta-banner">
         <div><h3>Потрібна консультація?</h3>
@@ -206,18 +150,12 @@
         </div>
       </div>
       <form class="card order" id="orderForm" novalidate>
+        <h3>Замовити дзвінок</h3>
         <label>Ваше імʼя<input name="name" autocomplete="name" maxlength="60"></label>
         <label>Телефон *<input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+380" maxlength="20"></label>
-        <div class="two">
-          <label>Що замовляєте<select name="item" id="fWood"><optgroup label="Дрова для опалення"><option value="split">Колоті дрова</option><option value="sawn">Пиляні дрова</option><option value="meter">Метрові дрова</option></optgroup><optgroup label="Паливні брикети"><option value="br-wood">Деревні брикети</option><option value="br-peat">Торфʼяні брикети</option><option value="br-husk">Брикети з лушпиння</option></optgroup><optgroup label="Паливні пелети"><option value="pel-agro">Агропелети</option><option value="pel-sun">Соняшникові пелети</option></optgroup><optgroup label="Вугілля для опалення"><option value="coal-dg-bulk">Вугілля ДГ навалом</option><option value="coal-dg-bags">Вугілля ДГ у мішках</option></optgroup><optgroup label="Пісок"><option value="sand-river">Річковий митий пісок</option><option value="sand-quarry">Карʼєрний жовтий пісок</option></optgroup></select></label>
-          <label>Кількість<input name="volume" id="fVol" inputmode="decimal" maxlength="20" value="4 м³"></label>
-        </div>
-        <label>Адреса або район<input name="address" autocomplete="street-address" maxlength="120"></label>
-        <label>Коментар (необовʼязково)<textarea name="comment" rows="2" maxlength="500"></textarea></label>
+        <label>Коментар (необовʼязково)<textarea name="comment" rows="2" maxlength="500" placeholder="Що потрібно, куди привезти"></textarea></label>
         <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <input type="hidden" name="lang" value="uk">
-        <input type="hidden" name="estimate" id="fEst">
-        <button class="btn btn-lg btn-block" type="submit">Замовити дрова</button>
+        <button class="btn btn-lg btn-block" type="submit">Передзвоніть мені</button>
         <p class="policy">Натискаючи кнопку, ви погоджуєтесь на обробку даних для звʼязку з вами.</p>
         <p class="form-msg" id="formMsg" role="status" hidden></p>
       </form>
@@ -252,10 +190,155 @@
 
 <div class="mob-bar">
   <a class="btn btn-light" href="tel:+380503947571">📞 Подзвонити</a>
-  <a class="btn" href="#order">Замовити</a>
+  <button type="button" class="btn" data-open-cart>🛒 Кошик <b class="cart-n">0</b></button>
 </div>
 
-<script>window.SITE={"lang":"uk","products":[{"id":"split","name":"Колоті дрова","price":3500,"noLength":false},{"id":"sawn","name":"Пиляні дрова","price":3500,"noLength":false},{"id":"meter","name":"Метрові дрова","price":3500,"noLength":true}],"items":{"split":{"name":"Колоті дрова","unit":"скл.м³","calc":true},"sawn":{"name":"Пиляні дрова","unit":"скл.м³","calc":true},"meter":{"name":"Метрові дрова","unit":"скл.м³","calc":true},"br-wood":{"name":"Деревні брикети","unit":"т","calc":false},"br-peat":{"name":"Торфʼяні брикети","unit":"т","calc":false},"br-husk":{"name":"Брикети з лушпиння","unit":"т","calc":false},"pel-agro":{"name":"Агропелети","unit":"т","calc":false},"pel-sun":{"name":"Соняшникові пелети","unit":"т","calc":false},"coal-dg-bulk":{"name":"Вугілля ДГ навалом","unit":"т","calc":false},"coal-dg-bags":{"name":"Вугілля ДГ у мішках","unit":"т","calc":false},"sand-river":{"name":"Річковий митий пісок","unit":"т","calc":false},"sand-quarry":{"name":"Карʼєрний жовтий пісок","unit":"т","calc":false}},"freeFrom":4,"fee":400,"ok":"Дякуємо! Заявку прийнято — передзвонимо протягом 5 хвилин.","err":"Не вдалося надіслати. Подзвоніть нам, будь ласка:","phone":"+38 (050) 394-75-71","tel":"+380503947571"};</script>
+<script>window.SITE={"items":{"split":{"name":"Колоті дрова","unit":"скл.м³","price":3500,"cat":"Дрова для опалення"},"sawn":{"name":"Пиляні дрова","unit":"скл.м³","price":3500,"cat":"Дрова для опалення"},"meter":{"name":"Метрові дрова","unit":"скл.м³","price":3500,"cat":"Дрова для опалення"},"br-wood":{"name":"Деревні брикети","unit":"т","price":11000,"cat":"Паливні брикети"},"br-peat":{"name":"Торфʼяні брикети","unit":"т","price":11000,"cat":"Паливні брикети"},"br-husk":{"name":"Брикети з лушпиння","unit":"т","price":11000,"cat":"Паливні брикети"},"pel-agro":{"name":"Агропелети","unit":"т","price":11000,"cat":"Паливні пелети"},"pel-sun":{"name":"Соняшникові пелети","unit":"т","price":11000,"cat":"Паливні пелети"},"coal-dg-bulk":{"name":"Вугілля ДГ навалом","unit":"т","price":14000,"cat":"Вугілля для опалення"},"coal-dg-bags":{"name":"Вугілля ДГ у мішках","unit":"т","price":14000,"cat":"Вугілля для опалення"},"sand-river":{"name":"Річковий митий пісок","unit":"т","price":0,"cat":"Пісок"},"sand-quarry":{"name":"Карʼєрний жовтий пісок","unit":"т","price":0,"cat":"Пісок"}},"ok":"Дякуємо! Заявку прийнято — передзвонимо протягом 5 хвилин.","err":"Не вдалося надіслати. Подзвоніть нам, будь ласка:","phone":"+38 (050) 394-75-71","tel":"+380503947571"};</script>
+
+<dialog class="sheet" id="dlg-firewood" aria-labelledby="dlg-firewood-h">
+  <div class="sheet-head"><h2 id="dlg-firewood-h">Дрова для опалення</h2><button type="button" class="x" data-close aria-label="Закрити">×</button></div>
+  <p class="muted">Дуб, ясен, граб, акація. Чесний складометр — міряємо при вас.</p>
+  <div class="sheet-list">
+    <div class="pick" data-id="split">
+      <div class="pick-img"><img src="/img/split.webp" alt="Колоті дрова — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async"></div>
+      <div class="pick-info"><h3>Колоті дрова</h3><div class="price"><small>від</small> <b>3 500</b> <small>грн/скл.м³</small></div></div>
+      <div class="pick-act">
+        <div class="qty" aria-label="Кількість"><button type="button" data-dec aria-label="Менше">−</button><input type="number" min="1" max="999" value="1" inputmode="numeric" aria-label="Кількість, скл.м³"><span class="qty-u">скл.м³</span><button type="button" data-inc aria-label="Більше">+</button></div>
+        <button type="button" class="btn" data-add="split">Додати в кошик</button>
+      </div>
+    </div>
+    <div class="pick" data-id="sawn">
+      <div class="pick-img"><img src="/img/sawn.webp" alt="Пиляні дрова — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async"></div>
+      <div class="pick-info"><h3>Пиляні дрова</h3><div class="price"><small>від</small> <b>3 500</b> <small>грн/скл.м³</small></div></div>
+      <div class="pick-act">
+        <div class="qty" aria-label="Кількість"><button type="button" data-dec aria-label="Менше">−</button><input type="number" min="1" max="999" value="1" inputmode="numeric" aria-label="Кількість, скл.м³"><span class="qty-u">скл.м³</span><button type="button" data-inc aria-label="Більше">+</button></div>
+        <button type="button" class="btn" data-add="sawn">Додати в кошик</button>
+      </div>
+    </div>
+    <div class="pick" data-id="meter">
+      <div class="pick-img"><img src="/img/meter.webp" alt="Метрові дрова — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async"></div>
+      <div class="pick-info"><h3>Метрові дрова</h3><div class="price"><small>від</small> <b>3 500</b> <small>грн/скл.м³</small></div></div>
+      <div class="pick-act">
+        <div class="qty" aria-label="Кількість"><button type="button" data-dec aria-label="Менше">−</button><input type="number" min="1" max="999" value="1" inputmode="numeric" aria-label="Кількість, скл.м³"><span class="qty-u">скл.м³</span><button type="button" data-inc aria-label="Більше">+</button></div>
+        <button type="button" class="btn" data-add="meter">Додати в кошик</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+<dialog class="sheet" id="dlg-briquettes" aria-labelledby="dlg-briquettes-h">
+  <div class="sheet-head"><h2 id="dlg-briquettes-h">Паливні брикети</h2><button type="button" class="x" data-close aria-label="Закрити">×</button></div>
+  <p class="muted">Горять довше за дрова, мало золи, зручно зберігати.</p>
+  <div class="sheet-list">
+    <div class="pick" data-id="br-wood">
+      <div class="pick-img"><img src="/img/br-wood.webp" alt="Деревні брикети — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async"></div>
+      <div class="pick-info"><h3>Деревні брикети</h3><div class="price"><small>від</small> <b>11 000</b> <small>грн/т</small></div></div>
+      <div class="pick-act">
+        <div class="qty" aria-label="Кількість"><button type="button" data-dec aria-label="Менше">−</button><input type="number" min="1" max="999" value="1" inputmode="numeric" aria-label="Кількість, т"><span class="qty-u">т</span><button type="button" data-inc aria-label="Більше">+</button></div>
+        <button type="button" class="btn" data-add="br-wood">Додати в кошик</button>
+      </div>
+    </div>
+    <div class="pick" data-id="br-peat">
+      <div class="pick-img"><img src="/img/br-peat.webp" alt="Торфʼяні брикети — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async"></div>
+      <div class="pick-info"><h3>Торфʼяні брикети</h3><div class="price"><small>від</small> <b>11 000</b> <small>грн/т</small></div></div>
+      <div class="pick-act">
+        <div class="qty" aria-label="Кількість"><button type="button" data-dec aria-label="Менше">−</button><input type="number" min="1" max="999" value="1" inputmode="numeric" aria-label="Кількість, т"><span class="qty-u">т</span><button type="button" data-inc aria-label="Більше">+</button></div>
+        <button type="button" class="btn" data-add="br-peat">Додати в кошик</button>
+      </div>
+    </div>
+    <div class="pick" data-id="br-husk">
+      <div class="pick-img"><img src="/img/br-husk.webp" alt="Брикети з лушпиння — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async"></div>
+      <div class="pick-info"><h3>Брикети з лушпиння</h3><div class="price"><small>від</small> <b>11 000</b> <small>грн/т</small></div></div>
+      <div class="pick-act">
+        <div class="qty" aria-label="Кількість"><button type="button" data-dec aria-label="Менше">−</button><input type="number" min="1" max="999" value="1" inputmode="numeric" aria-label="Кількість, т"><span class="qty-u">т</span><button type="button" data-inc aria-label="Більше">+</button></div>
+        <button type="button" class="btn" data-add="br-husk">Додати в кошик</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+<dialog class="sheet" id="dlg-pellets" aria-labelledby="dlg-pellets-h">
+  <div class="sheet-head"><h2 id="dlg-pellets-h">Паливні пелети</h2><button type="button" class="x" data-close aria-label="Закрити">×</button></div>
+  <p class="muted">Для пелетних котлів. У мішках або на палетах.</p>
+  <div class="sheet-list">
+    <div class="pick" data-id="pel-agro">
+      <div class="pick-img"><img src="/img/pel-agro.webp" alt="Агропелети — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async"></div>
+      <div class="pick-info"><h3>Агропелети</h3><div class="price"><small>від</small> <b>11 000</b> <small>грн/т</small></div></div>
+      <div class="pick-act">
+        <div class="qty" aria-label="Кількість"><button type="button" data-dec aria-label="Менше">−</button><input type="number" min="1" max="999" value="1" inputmode="numeric" aria-label="Кількість, т"><span class="qty-u">т</span><button type="button" data-inc aria-label="Більше">+</button></div>
+        <button type="button" class="btn" data-add="pel-agro">Додати в кошик</button>
+      </div>
+    </div>
+    <div class="pick" data-id="pel-sun">
+      <div class="pick-img"><img src="/img/pel-sun.webp" alt="Соняшникові пелети — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async"></div>
+      <div class="pick-info"><h3>Соняшникові пелети</h3><div class="price"><small>від</small> <b>11 000</b> <small>грн/т</small></div></div>
+      <div class="pick-act">
+        <div class="qty" aria-label="Кількість"><button type="button" data-dec aria-label="Менше">−</button><input type="number" min="1" max="999" value="1" inputmode="numeric" aria-label="Кількість, т"><span class="qty-u">т</span><button type="button" data-inc aria-label="Більше">+</button></div>
+        <button type="button" class="btn" data-add="pel-sun">Додати в кошик</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+<dialog class="sheet" id="dlg-coal" aria-labelledby="dlg-coal-h">
+  <div class="sheet-head"><h2 id="dlg-coal-h">Вугілля для опалення</h2><button type="button" class="x" data-close aria-label="Закрити">×</button></div>
+  <p class="muted">Вугілля ДГ — навалом або у мішках.</p>
+  <div class="sheet-list">
+    <div class="pick" data-id="coal-dg-bulk">
+      <div class="pick-img noimg cat-coal"><span aria-hidden="true">⚫</span></div>
+      <div class="pick-info"><h3>Вугілля ДГ навалом</h3><div class="price"><small>від</small> <b>14 000</b> <small>грн/т</small></div></div>
+      <div class="pick-act">
+        <div class="qty" aria-label="Кількість"><button type="button" data-dec aria-label="Менше">−</button><input type="number" min="1" max="999" value="1" inputmode="numeric" aria-label="Кількість, т"><span class="qty-u">т</span><button type="button" data-inc aria-label="Більше">+</button></div>
+        <button type="button" class="btn" data-add="coal-dg-bulk">Додати в кошик</button>
+      </div>
+    </div>
+    <div class="pick" data-id="coal-dg-bags">
+      <div class="pick-img noimg cat-coal"><span aria-hidden="true">⚫</span></div>
+      <div class="pick-info"><h3>Вугілля ДГ у мішках</h3><div class="price"><small>від</small> <b>14 000</b> <small>грн/т</small></div></div>
+      <div class="pick-act">
+        <div class="qty" aria-label="Кількість"><button type="button" data-dec aria-label="Менше">−</button><input type="number" min="1" max="999" value="1" inputmode="numeric" aria-label="Кількість, т"><span class="qty-u">т</span><button type="button" data-inc aria-label="Більше">+</button></div>
+        <button type="button" class="btn" data-add="coal-dg-bags">Додати в кошик</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+<dialog class="sheet" id="dlg-sand" aria-labelledby="dlg-sand-h">
+  <div class="sheet-head"><h2 id="dlg-sand-h">Пісок</h2><button type="button" class="x" data-close aria-label="Закрити">×</button></div>
+  <p class="muted">Для будівництва, стяжки, кладки та благоустрою.</p>
+  <div class="sheet-list">
+    <div class="pick" data-id="sand-river">
+      <div class="pick-img noimg cat-sand"><span aria-hidden="true">⛰️</span></div>
+      <div class="pick-info"><h3>Річковий митий пісок</h3><div class="price"><span class="ask">ціна за телефоном</span></div></div>
+      <div class="pick-act">
+        <div class="qty" aria-label="Кількість"><button type="button" data-dec aria-label="Менше">−</button><input type="number" min="1" max="999" value="1" inputmode="numeric" aria-label="Кількість, т"><span class="qty-u">т</span><button type="button" data-inc aria-label="Більше">+</button></div>
+        <button type="button" class="btn" data-add="sand-river">Додати в кошик</button>
+      </div>
+    </div>
+    <div class="pick" data-id="sand-quarry">
+      <div class="pick-img noimg cat-sand"><span aria-hidden="true">⛰️</span></div>
+      <div class="pick-info"><h3>Карʼєрний жовтий пісок</h3><div class="price"><span class="ask">ціна за телефоном</span></div></div>
+      <div class="pick-act">
+        <div class="qty" aria-label="Кількість"><button type="button" data-dec aria-label="Менше">−</button><input type="number" min="1" max="999" value="1" inputmode="numeric" aria-label="Кількість, т"><span class="qty-u">т</span><button type="button" data-inc aria-label="Більше">+</button></div>
+        <button type="button" class="btn" data-add="sand-quarry">Додати в кошик</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+<dialog class="sheet" id="dlg-cart" aria-labelledby="dlg-cart-h">
+  <div class="sheet-head"><h2 id="dlg-cart-h">Кошик</h2><button type="button" class="x" data-close aria-label="Закрити">×</button></div>
+  <div id="cartList" class="cart-list"></div>
+  <p class="cart-empty muted" id="cartEmpty">Кошик порожній. Оберіть товари в каталозі.</p>
+  <form id="cartForm" class="order cart-form" novalidate>
+    <div class="cart-total"><span>Орієнтовно</span><b id="cartTotal"></b></div>
+    <label>Ваше імʼя<input name="name" autocomplete="name" maxlength="60"></label>
+    <label>Телефон *<input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+380" maxlength="20"></label>
+    <label>Адреса доставки *<input name="address" autocomplete="street-address" required maxlength="160" placeholder="Вулиця, будинок, район"></label>
+    <label>Коментар (необовʼязково)<textarea name="comment" rows="2" maxlength="500"></textarea></label>
+    <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <p class="pay-note pay-sm">💳 Оплата при отриманні — нічого платити заздалегідь не потрібно</p>
+    <button class="btn btn-lg btn-block" type="submit">Відправити заявку</button>
+    <p class="policy">Остаточну ціну та час доставки підтвердимо дзвінком. Натискаючи кнопку, ви погоджуєтесь на обробку даних для звʼязку з вами.</p>
+    <p class="form-msg" id="cartMsg" role="status" hidden></p>
+  </form>
+</dialog>
+<button type="button" class="cart-fab" id="cartFab" hidden aria-label="Відкрити кошик">🛒 Кошик <b id="cartCount">0</b></button>
 <script src="/app.js" defer></script>
 </body>
 </html>
