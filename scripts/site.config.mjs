@@ -1,7 +1,7 @@
 // Единое место для контактов, цен и каталога. Поменяли здесь → `npm run build`.
 
 export const site = {
-  domain: "https://drova-niko.com.ua", // TODO: заменить на реальный домен
+  domain: "https://ygol-niko.com",
   brand: "Склад твердого палива та сипучих матеріалів",
   phone: "+380503947571",
   phoneHuman: "+38 (050) 394-75-71",
