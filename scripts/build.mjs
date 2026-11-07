@@ -9,7 +9,7 @@ const T = {
     lang: "uk", path: "/",
     title: "Дрова Миколаїв — купити дрова, брикети, пелети, вугілля з доставкою",
     desc: `Дрова в Миколаєві: колоті, пиляні, метрові. Паливні брикети, пелети, вугілля ДГ, пісок. Доставка в день замовлення, оплата після розвантаження. ☎ ${site.phoneHuman}`,
-    nav: ["Каталог", "Доставка"],
+    nav: ["Каталог", "Доставка", "Контакти"],
     call: "Подзвонити",
     heroBadge: "На ринку з 1997 року · дрова в наявності",
     heroH1: "Дрова та паливо<br>у Миколаєві з доставкою <span>сьогодні</span>",
@@ -32,7 +32,7 @@ const T = {
     fName: "Ваше імʼя", fPhone: "Телефон", fWood: "Що замовляєте", fVol: "Кількість", fAddr: "Адреса або район", fMsg: "Коментар (необовʼязково)",
     fBtn: "Замовити дрова", fPolicy: "Натискаючи кнопку, ви погоджуєтесь на обробку даних для звʼязку з вами.",
     fOk: "Дякуємо! Заявку прийнято — передзвонимо протягом 5 хвилин.", fErr: "Не вдалося надіслати. Подзвоніть нам, будь ласка:",
-    orWrite: "або напишіть", footer: "Дрова, паливні брикети, пелети, вугілля та пісок з доставкою в Миколаєві та області.", hoursL: "Працюємо",
+    orWrite: "або напишіть", footer: "Дрова, паливні брикети, пелети, вугілля та пісок з доставкою в Миколаєві та області.", hoursL: "Склад",
     mobCall: "Подзвонити", mobOrder: "Замовити",
   },
 };
@@ -44,19 +44,19 @@ function page(L) {
   const t = T[L];
   const name = (p) => p[L];
   const unit = (i) => (L === "uk" ? i.unitUk : i.unitRu);
-  const ids = ["prices", "delivery"];
+  const ids = ["prices", "delivery", "contacts"];
   const canonical = site.domain + t.path;
-  const hours = L === "uk" ? site.hours : site.hoursRu;
+  const hours = site.hours;
+  const mapQ = encodeURIComponent(site.address);
   const minPrice = Math.min(...products.map((p) => p.price));
 
   const ld = [
     {
       "@context": "https://schema.org", "@type": "LocalBusiness", name: site.brand, foundingDate: "1997",
       description: t.desc, url: canonical, telephone: site.phone, priceRange: "₴₴",
-      address: { "@type": "PostalAddress", addressLocality: L === "uk" ? "Миколаїв" : "Николаев", addressRegion: L === "uk" ? "Миколаївська область" : "Николаевская область", addressCountry: "UA" },
-      geo: { "@type": "GeoCoordinates", latitude: site.geo.lat, longitude: site.geo.lng },
+      address: { "@type": "PostalAddress", streetAddress: site.street, addressLocality: L === "uk" ? "Миколаїв" : "Николаев", addressRegion: L === "uk" ? "Миколаївська область" : "Николаевская область", addressCountry: "UA" },
       areaServed: { "@type": "City", name: L === "uk" ? "Миколаїв" : "Николаев" },
-      openingHoursSpecification: { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], opens: "08:00", closes: "20:00" },
+      openingHoursSpecification: { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], opens: site.opens, closes: site.closes },
       hasOfferCatalog: { "@type": "OfferCatalog", name: t.pricesH, itemListElement: catalog.map((c) => ({ "@type": "OfferCatalog", name: name(c),
         itemListElement: c.items.map((i) => ({ "@type": "Offer", priceCurrency: "UAH", ...(i.price ? { price: i.price } : {}), itemOffered: { "@type": "Product", name: name(i) } })) })) },
     },
@@ -203,10 +203,27 @@ function page(L) {
   </section>
 </main>
 
+<section id="contacts" class="sec sec-alt">
+  <div class="wrap contacts-in">
+    <div>
+      <h2>Склад і контакти</h2>
+      <ul class="contacts">
+        <li><span>📍 Адреса складу</span><b>${site.address}</b></li>
+        <li><span>🕖 Графік роботи складу</span><b>${hours}</b></li>
+        <li><span>📞 Телефон</span><b><a href="tel:${site.phone}">${site.phoneHuman}</a></b></li>
+      </ul>
+      <a class="btn btn-light" href="https://www.google.com/maps/search/?api=1&query=${mapQ}" target="_blank" rel="noopener">Відкрити в Google Maps</a>
+    </div>
+    <div class="map">
+      <iframe title="${esc(site.address)} на карті" src="https://maps.google.com/maps?q=${mapQ}&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
 <footer class="foot">
   <div class="wrap foot-in">
     <div><b>${site.brand}</b><p>${t.footer}</p></div>
-    <div><p>${t.hoursL}: ${hours}</p><p><a href="tel:${site.phone}">${site.phoneHuman}</a></p></div>
+    <div><p>${site.address}</p><p>${t.hoursL}: ${hours}</p><p><a href="tel:${site.phone}">${site.phoneHuman}</a></p></div>
     <div><p>© ${new Date().getFullYear()} ${site.brand}</p></div>
   </div>
 </footer>
