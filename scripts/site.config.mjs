@@ -28,7 +28,7 @@ export const catalog = [
     ],
   },
   {
-    id: "briquettes", icon: "🧱",
+    id: "briquettes", icon: "🧱", img: "/img/cat-briquettes.webp", // фото картки категорії
     uk: "Паливні брикети", ru: "Топливные брикеты",
     noteUk: "Горять довше за дрова, мало золи, зручно зберігати.",
     noteRu: "Горят дольше дров, мало золы, удобно хранить.",
