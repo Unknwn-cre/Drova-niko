@@ -17,4 +17,7 @@ npx wrangler secret put TELEGRAM_CHAT_ID     # id чата/группы, куд�
 - `npm run dev` — локально (wrangler dev)
 - `npm run deploy` — сборка и деплой воркера `drova-niko`
 
-Если воркер подключён к GitHub через Cloudflare Workers Builds: build command `npm run build`, deploy command `npx wrangler deploy`.
+## Автодеплой
+При каждом пуше в `main` GitHub Actions (`.github/workflows/deploy.yml`) собирает сайт и делает `wrangler deploy`. Нужны секреты репозитория `CLOUDFLARE_API_TOKEN` (шаблон «Edit Cloudflare Workers») и `CLOUDFLARE_ACCOUNT_ID`.
+
+Альтернатива — Cloudflare Workers Builds: build command `npm run build`, deploy command `npx wrangler deploy`.
