@@ -15,7 +15,7 @@ const T = {
     heroSub: `Колоті, пиляні та метрові дрова, паливні брикети, пелети, вугілля ДГ, пісок і щебінь. Чесний обʼєм, безкоштовна доставка дров, оплата після розвантаження.`,
     heroCta: "Обрати товар", heroCta2: "Замовити дзвінок",
     heroPoints: ["Доставка за 2–4 години", "Оплата по факту", "Вологість до 25%"],
-    pricesH: "Каталог і ціни", pricesSub: "Дрова, брикети, пелети, вугілля, пісок, щебінь і відсів з доставкою по Миколаєву та області. Ціни вказані «від» — точну суму назвемо за телефоном, вона залежить від обʼєму та фасування.", ask: "ціна за телефоном",
+    pricesH: "Каталог і ціни", pricesSub: "Дрова, брикети, пелети, вугілля, пісок, щебінь і відсів з доставкою по Миколаєву та області. Ціни на дрова, брикети та пелети вказані «від» — точну суму назвемо за телефоном, вона залежить від обʼєму та фасування.", ask: "ціна за телефоном",
     from: "від", unit: "грн/скл.м³", heat: "Тепловіддача", order: "Замовити",
     stepsH: "Як ми працюємо", steps: [
       ["Заявка", "Дзвінок, Viber/Telegram або форма на сайті"],
@@ -64,7 +64,7 @@ function page(L) {
   const thumb = (i, c, cls = "item-img") => `<div class="${cls}${i.img ? "" : ` noimg cat-${c.id}`}">${i.img
     ? `<img src="${i.img}" alt="${esc(name(i))} — купити в Миколаєві" width="800" height="600" loading="lazy" decoding="async">`
     : `<span aria-hidden="true">${c.icon}</span>`}</div>`;
-  const priceOf = (i) => i.price ? `<small>${t.from}</small> <b>${fmt(i.price)}</b> <small>грн/${unit(i)}</small>` : `<span class="ask">${t.ask}</span>`;
+  const priceOf = (i) => i.price ? `${i.exact ? "" : `<small>${t.from}</small> `}<b>${fmt(i.price)}</b> <small>грн/${unit(i)}</small>` : `<span class="ask">${t.ask}</span>`;
   const categoryCards = catalog.map((c) => {
     const priced = c.items.filter((i) => i.price);
     const min = priced.length ? Math.min(...priced.map((i) => i.price)) : 0;
@@ -76,7 +76,7 @@ function page(L) {
             <span class="item-cat">${c.items.length} ${c.items.length > 4 ? "позицій" : c.items.length > 1 ? "позиції" : "позиція"}</span>
             <span class="cat-title">${esc(name(c))}</span>
             <span class="cat-note">${esc(c.items.map((i) => name(i)).join(" · "))}</span>
-            <span class="price">${min ? `<small>${t.from}</small> <b>${fmt(min)}</b> <small>грн/${unit(priced[0])}</small>` : `<span class="ask">${t.ask}</span>`}</span>
+            <span class="price">${min ? `${priced.every((i) => i.exact && i.price === min) ? "" : `<small>${t.from}</small> `}<b>${fmt(min)}</b> <small>грн/${unit(priced[0])}</small>` : `<span class="ask">${t.ask}</span>`}</span>
             <span class="btn btn-ghost">Обрати</span>
           </span>
         </button>`;
@@ -268,7 +268,7 @@ function page(L) {
   <button type="button" class="btn" data-open-cart>🛒 Кошик <b class="cart-n">0</b></button>
 </div>
 
-<script>window.SITE=${JSON.stringify({ items: Object.fromEntries(catalog.flatMap((c) => c.items.map((i) => [i.id, { name: name(i), unit: unit(i), price: i.price || 0, cat: name(c) }]))), ok: t.fOk, okCart: "Дякуємо! Заявку прийнято. Замовлення надходить у роботу після підтвердження по дзвінку — ми передзвонимо протягом 5 хвилин.", err: t.fErr, phone: site.phoneHuman, tel: site.phone })};</script>
+<script>window.SITE=${JSON.stringify({ items: Object.fromEntries(catalog.flatMap((c) => c.items.map((i) => [i.id, { name: name(i), unit: unit(i), price: i.price || 0, exact: !!i.exact, cat: name(c) }]))), ok: t.fOk, okCart: "Дякуємо! Заявку прийнято. Замовлення надходить у роботу після підтвердження по дзвінку — ми передзвонимо протягом 5 хвилин.", err: t.fErr, phone: site.phoneHuman, tel: site.phone })};</script>
 ${categoryDialogs}${cartDialog}
 <script src="/app.js" defer></script>
 </body>
