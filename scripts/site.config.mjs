@@ -79,7 +79,7 @@ export const catalog = [
       { id: "gravel-5-20", uk: "Щебінь 5–20", ru: "Щебень 5–20", price: 1200, unitUk: "т", unitRu: "т" },
       { id: "gravel-20-40", uk: "Щебінь 20–40", ru: "Щебень 20–40", price: 1200, unitUk: "т", unitRu: "т" },
       { id: "gravel-40-70", uk: "Щебінь 40–70", ru: "Щебень 40–70", price: 1200, unitUk: "т", unitRu: "т" },
-      { id: "screenings", uk: "Відсів", ru: "Отсев", price: 1150, unitUk: "т", unitRu: "т" },
+      { id: "screenings", uk: "Відсів щебню", ru: "Отсев щебня", price: 1150, unitUk: "т", unitRu: "т" },
     ],
   },
 ];
