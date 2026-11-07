@@ -63,7 +63,7 @@ h1 span{color:var(--fire)}
 
 /* trust */
 .trust{background:var(--dark);color:#fff}
-.trust-in{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:26px 20px}
+.trust-in{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:26px 20px}
 .trust b{display:block;font-size:30px;font-weight:800;color:#ffb27a}
 .trust span{color:#cbbfb0;font-size:14px}
 
@@ -166,8 +166,9 @@ details p{color:var(--muted)}
   .hero-art{display:none}
   .sec{padding:56px 0}
   .products,.why,.reviews,.steps{grid-template-columns:1fr}
-  .trust-in{grid-template-columns:repeat(2,1fr);padding:20px 16px}
-  .trust b{font-size:24px}
+  .trust-in{grid-template-columns:1fr 1fr 1fr;padding:20px 16px;gap:10px}
+  .trust span{font-size:12px}
+  .trust b{font-size:19px}
   .cta-row .btn{flex:1 1 100%}
   .top .btn-sm{display:none}
   .foot-in{grid-template-columns:1fr}
@@ -188,3 +189,25 @@ details p{color:var(--muted)}
 .cta-card{background:var(--dark);color:#fff;border-color:var(--dark)}
 .cta-card p{color:#cbbfb0}
 .cta-card .big-phone{font-size:26px;margin:4px 0 14px}
+
+/* warm theme: replaces black blocks */
+:root{--ember:linear-gradient(135deg,#8c3a10 0%,#c4531a 45%,#e8812f 100%)}
+.sec-dark,.trust,.cta-card{background:
+  radial-gradient(700px 360px at 12% 0%,rgba(255,214,150,.35),transparent 60%),
+  radial-gradient(600px 400px at 95% 100%,rgba(255,170,80,.35),transparent 60%),
+  var(--ember);color:#fff;border-color:transparent}
+.sec-dark{position:relative;overflow:hidden}
+.sec-dark::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.12;
+  background-image:repeating-radial-gradient(circle at 85% 30%,#fff 0 1px,transparent 1px 22px)}
+.sec-dark>.wrap{position:relative}
+.sec-dark .sub,.sec-dark .muted,.cta-card p,.trust span{color:#ffe9d6}
+.trust b,.calc output,.big-phone{color:#fff}
+.calc label{color:#fff}
+input[type=range]{accent-color:#fff}
+.sec-dark .card{box-shadow:0 20px 50px rgba(90,30,5,.35)}
+.cta-card .btn{background:#fff;color:var(--fire-d);box-shadow:none}
+.cta-card .btn:hover{background:#fff3e8}
+.foot{background:#f3ece1;color:var(--muted);border-top:1px solid var(--line)}
+.foot b{color:var(--ink)}
+.foot a{color:var(--fire-d)}
+.mob-bar{background:rgba(255,250,244,.97)!important;box-shadow:0 -6px 20px rgba(60,35,10,.12)}
