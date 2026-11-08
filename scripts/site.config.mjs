@@ -5,11 +5,13 @@ export const site = {
   gtm: "GTM-WGMGRPQS", // Google Tag Manager
   adsId: "AW-18546085051", // Google Ads (gtag.js)
   brand: "Склад твердого палива та сипучих матеріалів",
+  brandRu: "Склад твёрдого топлива и сыпучих материалов",
   phone: "+380503947571",
   phoneHuman: "+38 (050) 394-75-71",
   telegram: "+380503947571", // t.me/<username> или t.me/+номер
   viberPhone: "380503947571",
   address: "Херсонське шосе, 100-Ж, Миколаїв",
+  addressRu: "Херсонское шоссе, 100-Ж, Николаев",
   street: "Херсонське шосе, 100-Ж",
   hours: "07:00–15:00",
   opens: "07:00", closes: "15:00",

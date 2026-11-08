@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://ygol-niko.com/</loc><changefreq>weekly</changefreq></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://ygol-niko.com/</loc><changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://ygol-niko.com/"/><xhtml:link rel="alternate" hreflang="ru" href="https://ygol-niko.com/ru/"/>
+  </url>
+  <url><loc>https://ygol-niko.com/ru/</loc><changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://ygol-niko.com/"/><xhtml:link rel="alternate" hreflang="ru" href="https://ygol-niko.com/ru/"/>
+  </url>
 </urlset>
