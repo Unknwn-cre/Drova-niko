@@ -7,7 +7,8 @@
 
   // доставка сьогодні / завтра за київським часом: 00:00–14:59 — сьогодні, з 15:00 — завтра
   const kyivHour = () => { try { return +new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Kyiv", hour: "2-digit", hourCycle: "h23" }).format(new Date()); } catch { return new Date().getHours(); } };
-  const DAY = { today: { h1: "сьогодні", pt: "Доставка за 2–4 години", dl: "в день замовлення" }, tomorrow: { h1: "завтра", pt: "Доставка завтра", dl: "наступного дня" } };
+  const T = S.t;
+  const DAY = T.day;
   const setDay = () => { const t = DAY[kyivHour() < 15 ? "today" : "tomorrow"]; $$("[data-day]").forEach((el) => { el.textContent = t[el.dataset.day]; }); };
   setDay(); setInterval(setDay, 60000);
 
@@ -61,8 +62,8 @@
     const inp = b.closest(".pick").querySelector("input");
     cart[id] = clampQty((cart[id] || 0) + clampQty(inp.value));
     save(); render();
-    b.textContent = "✓ Додано"; b.classList.add("added");
-    setTimeout(() => { b.textContent = "Додати в кошик"; b.classList.remove("added"); }, 1400);
+    b.textContent = T.added; b.classList.add("added");
+    setTimeout(() => { b.textContent = T.add; b.classList.remove("added"); }, 1400);
     pulse();
   }));
 
@@ -83,12 +84,12 @@
       if (it.price) { total += it.price * q; if (!it.exact) approx = true; } else unknown = true;
       return `<div class="cart-row" data-id="${id}">
         <div><small class="item-cat">${it.cat}</small><b>${it.name}</b>
-          <span class="muted">${it.price ? `${it.exact ? "" : "від "}${fmt(it.price * q)} грн` : "ціна за телефоном"}</span></div>
-        <div class="qty"><button type="button" data-dec aria-label="Менше">−</button><input type="text" value="${showQty(q)}" inputmode="decimal" autocomplete="off" aria-label="Кількість"><span class="qty-u">${it.unit}</span><button type="button" data-inc aria-label="Більше">+</button></div>
-        <button type="button" class="rm" data-rm aria-label="Видалити">×</button>
+          <span class="muted">${it.price ? `${it.exact ? "" : T.from + " "}${fmt(it.price * q)} ${T.grn}` : T.ask}</span></div>
+        <div class="qty"><button type="button" data-dec aria-label="${T.less}">−</button><input type="text" value="${showQty(q)}" inputmode="decimal" autocomplete="off" aria-label="${T.qty}"><span class="qty-u">${it.unit}</span><button type="button" data-inc aria-label="${T.more}">+</button></div>
+        <button type="button" class="rm" data-rm aria-label="${T.rm}">×</button>
       </div>`;
     }).join("");
-    $("#cartTotal").textContent = total ? `${approx ? "від " : ""}${fmt(total)} грн${unknown ? " + позиції за телефоном" : ""}` : "ціну назвемо за телефоном";
+    $("#cartTotal").textContent = total ? `${approx ? T.from + " " : ""}${fmt(total)} ${T.grn}${unknown ? T.plusAsk : ""}` : T.ask;
   }
 
   list.addEventListener("change", (e) => {
